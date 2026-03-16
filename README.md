@@ -14,6 +14,9 @@
 </div>
 
 
+
+---
+
 ## __The Core Philosophy__
 > [!TIP]
 > **PleX** is NCOM’s native programming language.  
