@@ -27,3 +27,8 @@
 - **Top-Down Possession:** Scripts act as a "Hail" (handshake) to the system and end with an "Execute/Sign" (locking the state).
 - **Inert Hardware:** The system assumes the machine is "stupid" and inert. It will do nothing until forced by a "Bolt" (`~!!`).
 
+## __The "Zero Experience" Advantage__
+The creator had **no prior coding experience**, avoiding traps like "loops" or "if/then" statements. Instead, they built a system based on **Intent, Possession, and Force**.
+
+- **No Memory Leaks:** Lanes are physically occupied (Possessed). They cannot leak because they are "held" until signed off.
+- **No Syntax Errors:** Kinetic Input ensures the shorthand (`|__>`) always expands to the correct logic symbol (`╰──➤`).
