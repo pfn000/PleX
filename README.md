@@ -32,3 +32,25 @@ The creator had **no prior coding experience**, avoiding traps like "loops" or "
 
 - **No Memory Leaks:** Lanes are physically occupied (Possessed). They cannot leak because they are "held" until signed off.
 - **No Syntax Errors:** Kinetic Input ensures the shorthand (`|__>`) always expands to the correct logic symbol (`╰──➤`).
+
+# __BEHOLD THE "╰──➤"__
+> [!NOTE] 
+> The Power behind this character carries more meaning and use then thought!
+|"╰──➤" can mean| 
+| ------ | 
+| WHEN |
+| IF |
+| THEN |
+| FI  | 
+| OR |
+| ELSE |
+| BUT |
+| FOR |
+| GET |
+
+> [!WARNING]
+> You will **NEVER** Find ╰──➤ by itself! 
+
+> [!NOTE]
+> you will **ALWAYS** Find it "Paired" with a "header/bolt command! 
+
