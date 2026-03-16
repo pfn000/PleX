@@ -10,7 +10,9 @@ You are granted a limited, non-exclusive, non-transferable right to view this re
 ✅ You MAY:
 
 • Download any .plx file
+
 • Use PleX files in VS Code or Visual Studio
+
 • Write your own .plx files
 
 ## Strict Restrictions
