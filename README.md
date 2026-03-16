@@ -1,23 +1,15 @@
-<style>
-.header-row {
-  display: flex;
-  align-items: center;        /* center vertically; use flex-start to top-align */
-  gap: 18px;
-  padding: 6px 0;
-  /* remove any accidental borders */
-  border: none;
-  background: transparent;
-}
-.header-row img { display: block; width: 120px; height: auto; }
-.header-row .title { font-size: 40px; font-weight: 700; line-height: 1.1; margin: 0; }
-.header-row .subtitle { font-size: 18px; margin-top: 6px; opacity: 0.85; }
-</style>
+<div>
+  <img src="https://raw.githubusercontent.com/pfn000/PleX/main/Assets/Images/PleX%20code.png"
+       width="120"
+       align="left"
+       style="margin-right:18px;" />
 
-<div class="header-row">
-  <img src="https://raw.githubusercontent.com/pfn000/PleX/main/Assets/Images/PleX%20code.png" alt="PleX logo">
-  <div>
-    <div class="title">PleX Code</div>
-    <div class="subtitle">Built for direct intent.</div>
+  <div style="font-size:40px; font-weight:700; margin-top:10px;">
+    PleX Code
+  </div>
+
+  <div style="font-size:18px; margin-top:6px;">
+    Built for direct intent.
   </div>
 </div>
 
