@@ -16,6 +16,15 @@
 PleX is 100% new, modern, and unrelated.  
 The name comes from **“Complex”** — simplified into a language that feels direct, physical, and intentional.
 
+
+### 📋 Table of Contents
+- [Core Philosophy](#core-philosophy)
+- [The Deliberate Doctrine](#the-deliberate-doctrine)
+- [Behold the Flow Operator](#behold-the-flow-operator)
+- [Kinetic Vocabulary](#kinetic-vocabulary)
+- [Quick Start Examples](#quick-start)
+- [Legal & Restrictions](#legal)
+
 ## __The "Deliberate" Doctrine__
 
 - **Deliberate NOT Assumed:** All commands are direct seizures of hardware. Nothing is implied.
