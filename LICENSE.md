@@ -17,11 +17,11 @@ You are granted a limited, non-exclusive, non-transferable right to view this re
 
 ## Strict Restrictions
 You MAY NOT:
-• Download, copy, extract, or redistribute any image files, screenshots, graphics, or assets
-• Claim any portion of the code, images, or assets as your own
-• Pass off any part of PleX as your original work
-• Use any part of this repository in other projects, forks, or derivatives
-• Modify, reverse-engineer, or distribute the proprietary PleX code
+-  Download, copy, extract, or redistribute any image files, screenshots, graphics, or assets
+-  Claim any portion of the code, images, or assets as your own
+- Pass off any part of PleX as your original work
+- Use any part of this repository in other projects, forks, or derivatives
+- Modify, reverse-engineer, or distribute the proprietary PleX code
 
 Any unauthorized use will be considered infringement and may result in legal action.
 
