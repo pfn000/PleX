@@ -296,3 +296,11 @@ UI | Nav Bar
 
 > [!CAUTION]
 > `Pulse~!!` will be the __ONLY__ exception to this rule because it is a dirrect metal command where you may see `n~`. 
+
+```PleX
+Pulse~!! n~ /f |~| @0xFAF1_NF-0
+```
+where it will register as:
+```PleX
+n~ |~| @0xFAF1_NF-0
+```
