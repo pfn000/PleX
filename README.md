@@ -330,4 +330,17 @@ Hail | @attributes
 ╰──➤ |~| GlassUI.khon
 ```
 3. **`.mf` (The Manifesto):** A sparse virtualization index. It uses "Zero-Copy Access," pointing to data offsets on the disk rather than loading files into RAM.
-4. **`.bun` OR `.Retard` (The Bundle):** Compressed raw data streams, often "Double-Locked" (`|| \ .bun |!!|`) for integrity.
+4. **`.bun` OR `.Retard` (The Bundle):** Compressed raw data streams, often used to store math code or logic states. this is filetype is act as a way to tell the PC, `"Hey don't screw this up stupid"` it uses this as a zero trust basis to prevent any errors 
+EXP:
+```Retard
+Math | Logic
+╰──➤ Argu~!! 
+   ╰──➤ X | Value 
+   ╰──➤ Y | Value
+   ╰──➤ X | 2
+   ╰──➤ Y | 4
+╰──➤ Argu~!!
+   ╰──➤ X + Y | 8
+   ╰──➤ 8 | x + Y 
+   ╰──➤ 8 | combined value
+```
