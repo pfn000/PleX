@@ -20,6 +20,12 @@
 > It does not follow traditional programming models or derive from existing languages like C or Python.  
 > Instead, PleX was designed from the ground up as a direct interface between software logic and physical systems.
 
+## __Important Distinction__
+> [!CAUTION] 
+> **This is NOT** the old 1970s Ericsson PLEX language[!](https://en.wikipedia.org/wiki/PLEX_(programming_language) used in telecom switches.  
+PleX is 100% new, modern, and unrelated.  
+The name comes from **“Complex”** — simplified into a language that feels direct, physical, and intentional.
+
 ## __The "Deliberate" Doctrine__
 
 - **Deliberate NOT Assumed:** All commands are direct seizures of hardware. Nothing is implied.
