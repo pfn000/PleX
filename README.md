@@ -3,7 +3,7 @@
 
   <div>
     <h2 style="font-size:42px; font-weight:700; margin:0;">
-     __PleX Code__
+      PleX Code
     </h2>
     <div style="font-size:18px; margin-top:6px;">
       Built for direct intent.
