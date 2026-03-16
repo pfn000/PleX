@@ -304,3 +304,26 @@ where it will register as:
 ```PleX
 n~ |~| @0xFAF1_NF-0
 ```
+this is beause it has send a dirrect pulse to the CPU as a packet via channel line
+#
+## __The Dictionary of Force__
+
+
+- **`Sniff`**: Sensing the state (checking the vibe) rather than calculating numbers.
+
+- **`Hail`**: The initial handshake call to a system.
+
+#
+## __Architecture: Brain, Body, and Manifesto__
+
+Plex separates logic from physicality to allow universal compatibility.
+
+1. **`.plx` (The Brain):** Contains the Intent and Logic (e.g., "Turn on Light").
+2. **`.attributes` (The Body):**acts as a address book for links, arguments, and assets like images ext. the use case of this serves better without having to find every single stupid link or asset with just using `@attributes` where it will grab that needed asset 
+EXT: 
+```Plex
+Hail | @attributes
+╰──➤ |~| GlassUI.khon
+```
+3. **`.mf` (The Manifesto):** A sparse virtualization index. It uses "Zero-Copy Access," pointing to data offsets on the disk rather than loading files into RAM.
+4. **`.bun` OR `.Retard` (The Bundle):** Compressed raw data streams, often "Double-Locked" (`|| \ .bun |!!|`) for integrity.
