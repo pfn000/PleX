@@ -22,7 +22,7 @@
 
 ## __Important Distinction__
 > [!CAUTION] 
-> **This is NOT** the old 1970s Ericsson PLEX language[!](https://en.wikipedia.org/wiki/PLEX_(programming_language) used in telecom switches.  
+> **This is NOT** the old 1970s Ericsson PLEX language [!](https://en.wikipedia.org/wiki/PLEX_(programming_language) used in telecom switches.  
 PleX is 100% new, modern, and unrelated.  
 The name comes from **“Complex”** — simplified into a language that feels direct, physical, and intentional.
 
