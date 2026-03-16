@@ -1,14 +1,13 @@
-<div style="display:flex; align-items:flex-start;">
+<div style="display:flex; align-items:center; gap:18px; padding:6px 0;">
   <img src="https://raw.githubusercontent.com/pfn000/PleX/main/Assets/Images/PleX%20code.png"
-       width="120"
-       style="margin-right:18px;" />
+       width="120" />
 
   <div>
-    <div style="font-size:40px; font-weight:700; margin-top:10px;">
+    <div style="font-size:40px; font-weight:700; line-height:1.1;">
       PleX Code
     </div>
 
-    <div style="font-size:18px; margin-top:6px;">
+    <div style="font-size:18px; margin-top:6px; opacity:0.85;">
       Built for direct intent.
     </div>
   </div>
