@@ -36,6 +36,7 @@ The creator had **no prior coding experience**, avoiding traps like "loops" or "
 # __BEHOLD THE "╰──➤"__
 > [!NOTE] 
 > The Power behind this character carries more meaning and use then thought!
+
 |"╰──➤" can mean| 
 | ------ | 
 | WHEN |
