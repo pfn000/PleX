@@ -79,7 +79,8 @@ UI | Nav Bar
 
 
 # __Kinetic Input & Vocabulary__
-> [!TIP] Plex uses "Kinetic Shorthand"—rapid keystrokes that the Plex’er (background layer) instantly transforms into geometric glyphs. This map represents a physical path for electricity.
+> [!TIP] 
+> Plex uses "Kinetic Shorthand"—rapid keystrokes that the Plex’er (background layer) instantly transforms into geometric glyphs. This map represents a physical path for electricity.
 
 <h3>The Glyphs</h3>
 
