@@ -15,7 +15,7 @@
 
 #
 ## __The Core Philosophy__
-> [!NOTE]
+> [!TIP]
 > **PleX** is NCOM’s native programming language.  
 > It does not follow traditional programming models or derive from existing languages like C or Python.  
 > Instead, PleX was designed from the ground up as a direct interface between software logic and physical systems.
@@ -49,7 +49,7 @@ The creator had **no prior coding experience**, avoiding traps like "loops" or "
 | FOR |
 | GET |
 
-> [!WARNING]
+> [!CAUTION]
 > You will **NEVER** Find ╰──➤ by itself! 
 
 > [!NOTE]
