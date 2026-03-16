@@ -241,3 +241,58 @@ UI | Nav Bar
 
 </tbody>
 </table>
+
+
+
+</tbody>
+</table>
+
+> [!CAUTION]
+> now there are certain commands that will automatically be autocorrected! 
+
+
+<table>
+<thead>
+<tr>
+<th>Origital Command </th>
+<th>Autocorrected </th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><code>Link~!!</code></td>
+<td>To <code>|~|</code> an exsption it may change to <code>|~|~!!</code> this would be used as a safeguard where it will have safty handle "optional"</td>
+</tr>
+
+
+<tr>
+<td><code>Hail~!!</code></td>
+<td>To <code>Hail |</code> </td>
+</tr>
+
+<tr>
+<td><code>Build~!!</code></td>
+<td>To <code>Build |</code> </td>
+</tr>
+
+<tr>
+<td><code>Show~!!</code></td>
+<td>To <code>Show |</code> </td>
+</tr>
+
+<tr>
+<td><code>Send~!!</code></td>
+<td>To <code>Send |</code> </td>
+</tr>
+
+<tr>
+<td><code>Bundle~!!</code></td>
+<td>To <code>Bundle |</code> </td>
+</tr>
+</tbody>
+</table>
+
+> [CAUTION]
+> `Pulse~!!` will be the __ONLY__ exception to this rule because it is a dirrect metal command where you may see `n~`. 
