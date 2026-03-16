@@ -322,7 +322,7 @@ Sniff | Devices[Local]
 
 Plex separates logic from physicality to allow universal compatibility.
 
-1. **`.plx` (The Brain):** Contains the Intent and Logic (e.g., "Turn on Light").
+1. **`.plx` (The Brain):**  Contains the Intent and Logic (e.g., "Turn on Light").
 2. **`.attributes` (The Body):**acts as a address book for links, arguments, and assets like images ext. the use case of this serves better without having to find every single stupid link or asset with just using `@attributes` where it will grab that needed asset 
 EXT: 
 ```Plex
