@@ -77,3 +77,166 @@ UI | Nav Bar
 ╰──➤ pill-shapped ( corners rounded = 24x )
 ```
 
+
+# __Kinetic Input & Vocabulary__
+> [!TIP] Plex uses "Kinetic Shorthand"—rapid keystrokes that the Plex’er (background layer) instantly transforms into geometric glyphs. This map represents a physical path for electricity.
+
+<h3>The Glyphs</h3>
+
+<table>
+<thead>
+<tr>
+<th>Glyph / Command</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td><code>Build~</code></td>
+<td>Preparation command similar to <em>import</em>. Signals the system to prepare for file creation or check for updates before execution.</td>
+</tr>
+
+<tr>
+<td><code>Build~!!</code></td>
+<td>Absolute build command. Forces the system to immediately execute the build or import operation.</td>
+</tr>
+
+<tr>
+<td><code>~!!</code></td>
+<td>Directive operator. Functions like a priority override (similar to <em>sudo</em>). Forces a command to execute immediately rather than being treated as a suggestion.</td>
+</tr>
+
+<tr>
+<td><code>Hail~!!</code></td>
+<td>Pull-active declaration. Instructs the system to prepare and retrieve any resources required for the next command.</td>
+</tr>
+
+<tr>
+<td><code>Call~!!</code></td>
+<td>State check command used to verify files, resources, or system actions.</td>
+</tr>
+
+<tr>
+<td><code>Sign~!!</code></td>
+<td>Authentication command. Requires an <code>.attributes</code> file to store official signatures and identity data.</td>
+</tr>
+
+<tr>
+<td><code>Argu~!!</code></td>
+<td>Defines logical arguments or structured reasoning inputs.</td>
+</tr>
+
+<tr>
+<td><code>Math~!!</code></td>
+<td>Declares a mathematical logic block or computation.</td>
+</tr>
+
+<tr>
+<td><code>Sniff~!!</code></td>
+<td>Search or scan command, typically used for detecting or querying physical sensors.</td>
+</tr>
+
+<tr>
+<td><code>|~|</code></td>
+<td>Link operator. Connects logic to a specific attribute, state, or data reference.</td>
+</tr>
+
+<tr>
+<td><code>|!!|</code></td>
+<td>Hard-guard operator used to prevent invalid calls, logic conflicts, or execution errors.</td>
+</tr>
+
+<tr>
+<td><code>╰──➤</code></td>
+<td>Flow operator that defines execution paths. Used for hierarchical command structures and logical branching (replacing constructs like IF, AND, OR, WHEN).</td>
+</tr>
+
+<tr>
+<td><code>╰──|</code></td>
+<td>Output operator. Emits or returns system feedback or results.</td>
+</tr>
+
+<tr>
+<td><code>Mark~!!</code></td>
+<td>Bundle pulse command that communicates directly with hardware layers. Often auto-corrects to <code>|~|~!!</code>.</td>
+</tr>
+
+<tr>
+<td><code>Show~!!</code></td>
+<td>Display command combining output and visualization (similar to print + display).</td>
+</tr>
+
+<tr>
+<td><code>UI~!!</code></td>
+<td>Declares a graphical interface block.</td>
+</tr>
+
+<tr>
+<td><code>Pulse~!!</code></td>
+<td>Direct signal transmission command, typically used with <code>send | Pulse~!!</code>.</td>
+</tr>
+
+<tr>
+<td><code>\\\</code></td>
+<td>Direct shell command invocation.</td>
+</tr>
+
+<tr>
+<td><code>Logic~!!</code></td>
+<td>Declares a direct logical state or evaluation block.</td>
+</tr>
+
+<tr>
+<td><code>Store~!!</code></td>
+<td>Command used to store data or state information.</td>
+</tr>
+
+<tr>
+<td><code>@</code></td>
+<td>Reference operator used to mention or access a file (example: <code>@.attributes</code>).</td>
+</tr>
+
+<tr>
+<td><code>Panel~!!</code></td>
+<td>UI component command used within <code>UI~!!</code> blocks.</td>
+</tr>
+
+<tr>
+<td><code>Check~!!</code></td>
+<td>Validation command used to confirm system state, arguments, or logic correctness.</td>
+</tr>
+
+<tr>
+<td><code>TAG~!!</code></td>
+<td>Creates a <code>.TAG</code> file used for metadata or signature storage.</td>
+</tr>
+
+<tr>
+<td><code>Link~!!</code></td>
+<td>Link command automatically normalized to <code>|~|~!!</code>.</td>
+</tr>
+
+<tr>
+<td><code>Script~!!</code></td>
+<td>Runs a specified range of lines from code. Example: <code>Script | [1-16] RUN</code>.</td>
+</tr>
+
+<tr>
+<td><code>[""]</code></td>
+<td>Represents an empty value or placeholder field.</td>
+</tr>
+
+<tr>
+<td><code>Bundle~!!</code></td>
+<td>Groups multiple commands into a structured execution bundle.</td>
+</tr>
+
+<tr>
+<td><code>/!!</code></td>
+<td>Comment or notes marker similar to code comments.</td>
+</tr>
+
+</tbody>
+</table>
