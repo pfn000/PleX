@@ -1,4 +1,4 @@
-![PleX Code Banner](https://github.com/pfn000/PleX/raw/main/Assets/Images/PleX%20code%20Banner.png)
+![PleX Code Banner](https://github.com/pfn000/PleX/raw/main/Assets/Images/PleXcode%20Banner.PNG)
 
 >
 >
