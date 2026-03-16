@@ -1,2 +1,6 @@
-# PleX
-This is PleX code. a brand new programming langauge
+<p align="left">
+  <img src="https://raw.githubusercontent.com/pfn000/PleX/main/Assets/Images/PleX%20code.png" width="120" align="left" style="margin-right:15px;" />
+
+# PleX Code
+Built for direct intent.
+</p>
