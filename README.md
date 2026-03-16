@@ -294,5 +294,5 @@ UI | Nav Bar
 </tbody>
 </table>
 
-> [CAUTION]
+> [!CAUTION]
 > `Pulse~!!` will be the __ONLY__ exception to this rule because it is a dirrect metal command where you may see `n~`. 
