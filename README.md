@@ -55,3 +55,25 @@ The creator had **no prior coding experience**, avoiding traps like "loops" or "
 > [!NOTE]
 > you will **ALWAYS** Find it "Paired" with a "header/bolt command! 
 
+### Examples 
+```PleX
+Build | UI
+╰──➤ images
+╰──➤ Buttons 
+``` 
+OR
+```PleX 
+Hail | Logic 
+╰──➤ Argu~!! ...
+```
+OR
+```PleX 
+Import | @assets
+╰──➤ /!! markdown
+```
+OR
+```PleX
+UI | Nav Bar
+╰──➤ pill-shapped ( corners rounded = 24x )
+```
+
