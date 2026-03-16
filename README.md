@@ -309,9 +309,13 @@ this is beause it has send a dirrect pulse to the CPU as a packet via channel li
 ## __The Dictionary of Force__
 
 
-- **`Sniff`**: Sensing the state (checking the vibe) rather than calculating numbers.
+- **`Sniff`**: scan or search for phisical devices or components
+```PleX
+Sniff | Devices[Local]
+╰──➤ Bluetooth [@_TI-Bluetooth-comp](|~|~!! @_#c.e22ld_K[LC])
+``` 
 
-- **`Hail`**: The initial handshake call to a system.
+- **`Hail`**: The initial handshake call to a system. this tells fetch something simular to `Sudo` or `Winget` or `pacman`.
 
 #
 ## __Architecture: Brain, Body, and Manifesto__
