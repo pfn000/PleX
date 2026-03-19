@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="icon" type="image/png" sizes="50x50" href="https://raw.githubusercontent.com/pfn000/PleX/main/Assets/Images/PleX%20code.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Docs.PleX.html</title>
@@ -12,6 +13,13 @@
         --bg: #07100e;
         --panel: rgba(16, 22, 20, 0.82);
         --panel-strong: rgba(9, 12, 11, 0.94);
+        --bg-deep: #040707;
+        --panel: rgba(16, 22, 20, 0.78);
+        --panel-strong: rgba(11, 15, 13, 0.88);
+        --panel-soft: rgba(255, 255, 255, 0.04);
+        --border: rgba(160, 255, 214, 0.14);
+        --border-strong: rgba(255, 255, 255, 0.12);
+        --panel: rgba(16, 22, 20, 0.82);
         --panel-soft: rgba(255, 255, 255, 0.03);
         --border: rgba(160, 255, 214, 0.12);
         --text: #edf7f2;
@@ -19,6 +27,7 @@
         --accent: #00f58c;
         --accent-soft: rgba(0, 245, 140, 0.14);
         --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+        --glass-shadow: 0 20px 60px rgba(0, 0, 0, 0.38);
       }
 
       * { box-sizing: border-box; }
@@ -30,10 +39,14 @@
         background:
           radial-gradient(circle at top right, rgba(0, 245, 140, 0.08), transparent 28%),
           linear-gradient(180deg, #08110f 0%, #040707 100%);
+          linear-gradient(180deg, #08110f 0%, var(--bg-deep) 100%);
       }
       body.menu-open { overflow: hidden; }
       a { color: inherit; text-decoration: none; }
       button { font: inherit; }
+          linear-gradient(180deg, #08110f 0%, #040707 100%);
+      }
+      a { color: inherit; text-decoration: none; }
       code, pre, p, li, h1, h2, h3, h4 { overflow-wrap: anywhere; }
 
       .topbar {
@@ -47,6 +60,9 @@
         min-height: 74px;
         padding: 0 1rem;
         border-bottom: 1px solid var(--border);
+        background: rgba(10, 14, 13, 0.7);
+        backdrop-filter: blur(22px) saturate(165%);
+        -webkit-backdrop-filter: blur(22px) saturate(165%);
         background: rgba(10, 14, 13, 0.72);
         backdrop-filter: blur(20px) saturate(150%);
         -webkit-backdrop-filter: blur(20px) saturate(150%);
@@ -73,6 +89,15 @@
       .topnav {
         display: flex;
         align-items: center;
+        gap: 0.45rem;
+        flex-wrap: wrap;
+      }
+
+      .nav-pill,
+      .menu-toggle,
+      .mobile-quick-link,
+      .edit-link,
+      .mobile-close {
         gap: 0.4rem;
         flex-wrap: wrap;
       }
@@ -82,6 +107,7 @@
       .mobile-close,
       .mobile-menu-link,
       .edit-link {
+      .menu-toggle {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -89,6 +115,7 @@
         padding: 0.78rem 1rem;
         border-radius: 999px;
         border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.035);
         background: rgba(255, 255, 255, 0.03);
         color: var(--text);
         font-weight: 600;
@@ -96,6 +123,11 @@
 
       .topnav a.active,
       .mobile-menu-link.active {
+      .nav-pill.active,
+      .mobile-quick-link.active,
+      .doc-list a.active,
+      .mobile-doc-list a.active {
+      .topnav a.active {
         background: var(--accent-soft);
         color: var(--text);
       }
@@ -113,6 +145,8 @@
       .content-card,
       .toc,
       .mobile-menu-panel {
+      .mobile-sheet {
+      .toc {
         border: 1px solid var(--border);
         border-radius: 22px;
         background: var(--panel);
@@ -130,6 +164,9 @@
       .toc h2,
       .mobile-menu-panel h2,
       .mobile-menu-panel h3 {
+      .mobile-sheet h2,
+      .mobile-sheet h3 {
+      .toc h2 {
         margin: 0 0 0.8rem;
         font-size: 0.82rem;
         text-transform: uppercase;
@@ -141,6 +178,9 @@
       .toc-list,
       .mobile-menu-list,
       .mobile-menu-actions {
+      .mobile-doc-list,
+      .mobile-quick-links {
+      .toc-list {
         list-style: none;
         margin: 0;
         padding: 0;
@@ -151,6 +191,14 @@
       .doc-list a,
       .toc-list a,
       .mobile-menu-list a {
+      .mobile-doc-list a {
+        display: block;
+        padding: 0.72rem 0.8rem;
+        border-radius: 14px;
+        color: var(--muted);
+        transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+        border: 1px solid transparent;
+      .toc-list a {
         display: block;
         padding: 0.72rem 0.8rem;
         border-radius: 12px;
@@ -163,12 +211,19 @@
       .toc-list a:hover,
       .mobile-menu-list a:hover,
       .mobile-menu-list a.active {
+      .mobile-doc-list a:hover,
+      .mobile-doc-list a.active {
+      .toc-list a:hover {
         background: rgba(255, 255, 255, 0.04);
         color: var(--text);
       }
 
       .doc-list a.active,
       .mobile-menu-list a.active {
+      .mobile-doc-list a.active {
+        border-color: rgba(0, 245, 140, 0.18);
+        box-shadow: inset 3px 0 0 var(--accent);
+      .doc-list a.active {
         background: var(--accent-soft);
         border-left: 3px solid var(--accent);
       }
@@ -205,6 +260,9 @@
         margin-top: 0.85rem;
         display: none;
         width: fit-content;
+        display: none;
+        width: fit-content;
+        margin-top: 0.85rem;
       }
 
       .edit-link.revealed { display: inline-flex; }
@@ -248,6 +306,8 @@
 
       .mobile-menu-backdrop,
       .mobile-menu-panel {
+      .mobile-backdrop,
+      .mobile-sheet {
         display: none;
       }
 
@@ -295,6 +355,8 @@
       .footer a { color: #8cecc0; text-decoration: underline; }
       .menu-toggle,
       .mobile-close { display: none; }
+      .footer a { color: #8cecc0; text-decoration: underline; }
+      .menu-toggle { display: none; }
 
       @media (max-width: 1180px) {
         .app-shell {
@@ -345,6 +407,58 @@
         }
 
         .mobile-menu-copy {
+        .mobile-backdrop {
+          position: fixed;
+          inset: 0;
+          z-index: 70;
+          background: rgba(4, 8, 7, 0.42);
+          backdrop-filter: blur(12px) saturate(145%);
+          -webkit-backdrop-filter: blur(12px) saturate(145%);
+        }
+
+        .mobile-sheet {
+          position: fixed;
+          inset: auto 0 0 0;
+          z-index: 80;
+          display: block;
+          max-height: min(78vh, 720px);
+          padding: 1rem 1rem 1.15rem;
+          border-radius: 28px 28px 0 0;
+          background:
+            linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
+            rgba(12, 17, 15, 0.88);
+          border: 1px solid var(--border-strong);
+          border-bottom: 0;
+          box-shadow: var(--glass-shadow);
+          backdrop-filter: blur(30px) saturate(170%);
+          -webkit-backdrop-filter: blur(30px) saturate(170%);
+          transform: translateY(108%);
+          transition: transform 0.28s ease;
+          overflow-y: auto;
+        }
+
+        .mobile-sheet.open { transform: translateY(0); }
+        .mobile-backdrop.open { display: block; }
+
+        .mobile-sheet::before {
+          content: '';
+          display: block;
+          width: 54px;
+          height: 5px;
+          margin: 0 auto 0.95rem;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.26);
+        }
+
+        .mobile-header {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 0.9rem;
+          margin-bottom: 1rem;
+        }
+
+        .mobile-header p {
           margin: 0.35rem 0 0;
           color: var(--muted);
           line-height: 1.5;
@@ -356,6 +470,10 @@
         }
 
         .mobile-menu-actions {
+          background: rgba(255, 255, 255, 0.06);
+        }
+
+        .mobile-quick-links {
           grid-template-columns: repeat(2, minmax(0, 1fr));
           margin-bottom: 1rem;
         }
@@ -373,6 +491,30 @@
           border: 1px solid rgba(255, 255, 255, 0.08);
           background: rgba(255, 255, 255, 0.03);
         }
+        .mobile-quick-link {
+          justify-content: flex-start;
+          min-height: 48px;
+          border-radius: 18px;
+          text-align: left;
+        }
+
+        .mobile-section-card {
+          padding: 0.95rem;
+          border-radius: 20px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: rgba(255, 255, 255, 0.035);
+        }
+        .sidebar {
+          position: fixed;
+          top: 84px;
+          left: 1rem;
+          width: min(88vw, 340px);
+          transform: translateX(-110%);
+          transition: transform 0.2s ease;
+          z-index: 60;
+        }
+        .sidebar.open { transform: translateX(0); }
+        .menu-toggle { display: inline-flex; }
       }
 
       @media (max-width: 720px) {
@@ -380,11 +522,15 @@
         .brand-copy span { display: none; }
         .topbar { padding: 0 0.75rem; }
         .topnav a:not(.menu-toggle) { display: none; }
+        .topnav .nav-pill { display: none; }
         .app-shell,
         .footer { width: min(100% - 1rem, 1600px); }
         .content-card { padding: 1rem; }
         #docMeta { padding: 0.85rem; }
         .mobile-menu-actions { grid-template-columns: 1fr; }
+        .mobile-quick-links { grid-template-columns: 1fr; }
+        .app-shell,
+        .footer { width: min(100% - 1rem, 1600px); }
       }
     </style>
   </head>
@@ -424,10 +570,46 @@
       <section class="mobile-menu-sections">
         <h3>Sections</h3>
         <ul class="mobile-menu-list" id="mobileDocList">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileSheet">Menu</button>
+        <a href="./Docs.PleX.html" class="nav-pill active">Home</a>
+        <a href="https://github.com/pfn000/PleX/tree/main/.docs" class="nav-pill" target="_blank" rel="noreferrer">Documentation</a>
+        <a href="https://github.com/pfn000/PleX" class="nav-pill" target="_blank" rel="noreferrer">News</a>
+        <a href="https://github.com/pfn000/PleX/archive/refs/heads/main.zip" class="nav-pill" target="_blank" rel="noreferrer">Download</a>
+      </nav>
+    </header>
+
+    <div class="mobile-backdrop" id="mobileBackdrop" hidden></div>
+    <aside class="mobile-sheet" id="mobileSheet" aria-label="Mobile navigation" hidden>
+      <div class="mobile-header">
+        <div>
+          <h2>Docs menu</h2>
+          <p>A cleaner mobile drawer with all sections synced from your markdown files.</p>
+        </div>
+        <button class="mobile-close" id="mobileClose" type="button">Close</button>
+      </div>
+
+      <div class="mobile-quick-links">
+        <a class="mobile-quick-link active" href="./Docs.PleX.html">Home</a>
+        <a class="mobile-quick-link" href="https://github.com/pfn000/PleX/tree/main/.docs" target="_blank" rel="noreferrer">Documentation</a>
+        <a class="mobile-quick-link" href="https://github.com/pfn000/PleX" target="_blank" rel="noreferrer">News</a>
+        <a class="mobile-quick-link" href="https://github.com/pfn000/PleX/archive/refs/heads/main.zip" target="_blank" rel="noreferrer">Download</a>
+      </div>
+
+      <section class="mobile-section-card">
+        <h3>Sections</h3>
+        <ul class="mobile-doc-list" id="mobileDocList">
           <li><a href="#">Loading markdown files…</a></li>
         </ul>
       </section>
     </aside>
+
+        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false">Menu</button>
+        <a href="./Docs.PleX.html" class="active">Home</a>
+        <a href="https://github.com/pfn000/PleX/tree/main/.docs" target="_blank" rel="noreferrer">Documentation</a>
+        <a href="https://github.com/pfn000/PleX" target="_blank" rel="noreferrer">News</a>
+        <a href="https://github.com/pfn000/PleX/archive/refs/heads/main.zip" target="_blank" rel="noreferrer">Download</a>
+      </nav>
+    </header>
 
     <div class="app-shell">
       <aside class="sidebar" id="sidebar">
@@ -462,6 +644,8 @@
           <div>© 2026 NCOM Systems. All rights reserved.</div>
           <div class="footer-note">Triple-click the logo to reveal the private edit shortcut.</div>
         </div>
+        <span class="footer-logo" aria-hidden="true"></span>
+        <span>© 2026 NCOM Systems. All rights reserved.</span>
       </div>
       <a href="https://github.com/pfn000/PleX/blob/main/LICENSE.md" target="_blank" rel="noreferrer">Legal</a>
     </footer>
@@ -477,6 +661,9 @@
       const mobileMenu = document.getElementById('mobileMenu');
       const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
       const mobileMenuClose = document.getElementById('mobileMenuClose');
+      const mobileSheet = document.getElementById('mobileSheet');
+      const mobileBackdrop = document.getElementById('mobileBackdrop');
+      const mobileClose = document.getElementById('mobileClose');
       const docList = document.getElementById('docList');
       const mobileDocList = document.getElementById('mobileDocList');
       const pageTitle = document.getElementById('pageTitle');
@@ -485,6 +672,13 @@
       const content = document.getElementById('content');
       const tocList = document.getElementById('tocList');
       const logoReveal = document.getElementById('logoReveal');
+      const sidebar = document.getElementById('sidebar');
+      const menuToggle = document.getElementById('menuToggle');
+      const docList = document.getElementById('docList');
+      const pageTitle = document.getElementById('pageTitle');
+      const docMeta = document.getElementById('docMeta');
+      const content = document.getElementById('content');
+      const tocList = document.getElementById('tocList');
 
       function prettyTitle(file) {
         return file.replace(/\.md$/i, '').replace(/[-_]+/g, ' ');
@@ -530,6 +724,28 @@
         mobileMenu.classList.add('open');
         mobileMenuBackdrop.classList.add('open');
         menuToggle?.setAttribute('aria-expanded', 'true');
+      function closeMobileSheet() {
+        document.body.classList.remove('menu-open');
+        mobileSheet.classList.remove('open');
+        mobileBackdrop.classList.remove('open');
+        menuToggle?.setAttribute('aria-expanded', 'false');
+        setTimeout(() => {
+          if (!mobileSheet.classList.contains('open')) {
+            mobileSheet.hidden = true;
+            mobileBackdrop.hidden = true;
+          }
+        }, 280);
+      }
+
+      function openMobileSheet() {
+        document.body.classList.add('menu-open');
+        mobileSheet.hidden = false;
+        mobileBackdrop.hidden = false;
+        requestAnimationFrame(() => {
+          mobileSheet.classList.add('open');
+          mobileBackdrop.classList.add('open');
+          menuToggle?.setAttribute('aria-expanded', 'true');
+        });
       }
 
       function renderToc() {
@@ -561,6 +777,11 @@
         pageTitle.textContent = prettyTitle(selected.name);
         docMeta.innerHTML = `Source: <code>/.docs/${selected.name}</code> · markdown synced automatically from GitHub.`;
         editLink.href = editUrl;
+      async function loadDoc(file, files) {
+        const selected = files.find((entry) => entry.name === file) || files[0];
+        if (!selected) return;
+        pageTitle.textContent = prettyTitle(selected.name);
+        docMeta.innerHTML = `Source: <code>/.docs/${selected.name}</code> · <a href="https://github.com/${owner}/${repo}/blob/${branch}/.docs/${selected.name}" target="_blank" rel="noreferrer">Edit on GitHub</a>`;
         const markdown = await fetch(selected.download_url, { cache: 'no-store' }).then((response) => response.text());
         if (window.marked) {
           marked.setOptions({ headerIds: false, mangle: false });
@@ -571,6 +792,7 @@
         renderToc();
         applyActiveState(selected.name);
         closeMobileMenu();
+        closeMobileSheet();
       }
 
       function renderDocLinks(files) {
@@ -580,6 +802,10 @@
         }).join('');
         docList.innerHTML = markup;
         mobileDocList.innerHTML = markup;
+          content.innerHTML = `<pre>${markdown.replace(/[<>&]/g, (ch) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[ch]))}</pre>`;
+        }
+        renderToc();
+        docList.querySelectorAll('a').forEach((link) => link.classList.toggle('active', link.dataset.file === selected.name));
       }
 
       async function init() {
@@ -589,11 +815,20 @@
           const data = await response.json();
           const files = sortFiles(data.filter((item) => item.type === 'file' && item.name.toLowerCase().endsWith('.md')));
           renderDocLinks(files);
+          const files = sortFiles((await fetch(api, { cache: 'no-store' }).then((response) => response.json()))
+            .filter((item) => item.type === 'file' && item.name.toLowerCase().endsWith('.md')));
+
+          docList.innerHTML = files.map((file) => {
+            const href = `?doc=${encodeURIComponent(file.name)}`;
+            return `<li><a href="${href}" data-file="${file.name}"><strong>${prettyTitle(file.name)}</strong></a></li>`;
+          }).join('');
+
           await loadDoc(selectedFile(files[0]?.name), files);
         } catch (error) {
           pageTitle.textContent = 'Documentation failed to load';
           docMeta.textContent = 'The HTML shell could not discover markdown files from the .docs folder.';
           content.innerHTML = `<p>${escapeHtml(error.message)}</p>`;
+          content.innerHTML = `<p>${error.message}</p>`;
           tocList.innerHTML = '<li><a href="#">Unavailable</a></li>';
         }
       }
@@ -609,6 +844,16 @@
       mobileMenuBackdrop?.addEventListener('click', closeMobileMenu);
       window.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeMobileMenu();
+        if (mobileSheet.classList.contains('open')) {
+          closeMobileSheet();
+        } else {
+          openMobileSheet();
+        }
+      });
+      mobileClose?.addEventListener('click', closeMobileSheet);
+      mobileBackdrop?.addEventListener('click', closeMobileSheet);
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMobileSheet();
       });
 
       logoReveal?.addEventListener('click', (event) => {
@@ -616,6 +861,8 @@
           editLink.classList.add('revealed');
           editLink.focus();
         }
+        const open = sidebar.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(open));
       });
 
       init();
