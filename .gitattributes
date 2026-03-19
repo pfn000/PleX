@@ -13,6 +13,8 @@
 # Optional: hide ALL .plx files if you want (uncomment if needed).
 # *.plx linguist-vendored
 
+<<<<<<< codex/create-directory-structure-for-project-i2vqd8
+=======
 # Optional: hide ALL .plx files if you want (uncomment if needed).
 # *.plx linguist-vendored
 
@@ -24,5 +26,6 @@
 # Pink-ish: C++ (#f34b7d)
 *.Khon linguist-language=C++
 
+>>>>>>> main
 # Force .plxcode to always be counted (in case it was ignored before).
 *.plxcode linguist-detectable=true

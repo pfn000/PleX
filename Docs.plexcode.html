@@ -105,6 +105,11 @@
       }
 
       .brand-mark {
+        width: clamp(7.5rem, 18vw, 11.5rem);
+        height: auto;
+        display: block;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.3));
         width: 2.5rem;
         height: 2.5rem;
         display: grid;
@@ -513,6 +518,24 @@
         flex-wrap: wrap;
       }
 
+<<<<<<< codex/create-directory-structure-for-project-i2vqd8
+      .footer-signoff {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+        min-width: 0;
+      }
+
+      .footer-logo {
+        width: clamp(3rem, 8vw, 4.5rem);
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.3));
+        flex-shrink: 0;
+      }
+
+=======
+>>>>>>> main
       @media (max-width: 980px) {
         .hero-grid,
         .two-up,
@@ -573,7 +596,11 @@
     <header class="site-nav">
       <div class="nav-bar">
         <a class="brand" href="#top" aria-label="PlexCode Docs home">
+<<<<<<< codex/create-directory-structure-for-project-i2vqd8
+          <img class="brand-mark" src="Assets/Images/PleXcode Banner.PNG" alt="PlexCode logo banner" />
+=======
           <div class="brand-mark">PX</div>
+>>>>>>> main
           <div class="brand-copy">
             <strong>PlexCode Docs</strong>
             <span>Language, tooling, runtime, and API reference</span>
@@ -902,7 +929,14 @@ pipeline deploy(target: "edge") {
           </div>
 
           <div class="footer-bottom">
+<<<<<<< codex/create-directory-structure-for-project-i2vqd8
+            <div class="footer-signoff">
+              <img class="footer-logo" src="Assets/Images/NCOM Logo.png" alt="NCOM Systems company logo" />
+              <span>© 2026 NCOM Systems. All rights reserved.</span>
+            </div>
+=======
             <span>© 2026 PlexCode. Built for docs, launch readiness, and mobile-first readability.</span>
+>>>>>>> main
             <span>Dark mode · Frosted glass nav · Responsive footer</span>
           </div>
         </div>
