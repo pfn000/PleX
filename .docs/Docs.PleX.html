@@ -622,6 +622,7 @@
       <main class="content-card">
         <div class="eyebrow">How to use PlexCode docs</div>
         <h1 id="pageTitle">Loading documentation…</h1>
+        <div id="docMeta">This HTML skin loads markdown directly from the published .docs folder so the site keeps working without the GitHub API.</div>
         <div id="docMeta">This HTML skin auto-discovers markdown files in <code>/.docs</code> so new sections can appear without editing the HTML.</div>
         <a id="editLink" class="edit-link" href="#" target="_blank" rel="noreferrer">Edit on GitHub</a>
         <article id="content"></article>
@@ -655,6 +656,7 @@
       const owner = 'pfn000';
       const repo = 'PleX';
       const branch = 'main';
+      const manifestPath = './docs-manifest.json';
       const docsPath = '.docs';
       const priority = ['Overview.md', 'Orign.md', 'README.md'];
       const menuToggle = document.getElementById('menuToggle');
@@ -775,6 +777,12 @@
         if (!selected) return;
         const editUrl = `https://github.com/${owner}/${repo}/blob/${branch}/.docs/${selected.name}`;
         pageTitle.textContent = prettyTitle(selected.name);
+        docMeta.innerHTML = `Source: <code>/.docs/${selected.name}</code> · loaded from the published Pages artifact.`;
+        editLink.href = editUrl;
+        const markdown = await fetch(`./${encodeURIComponent(selected.name)}`, { cache: 'no-store' }).then((response) => {
+          if (!response.ok) throw new Error(`Failed to load ${selected.name}`);
+          return response.text();
+        });
         docMeta.innerHTML = `Source: <code>/.docs/${selected.name}</code> · markdown synced automatically from GitHub.`;
         editLink.href = editUrl;
       async function loadDoc(file, files) {
@@ -810,6 +818,17 @@
 
       async function init() {
         try {
+          const manifest = await fetch(manifestPath, { cache: 'no-store' }).then((response) => {
+            if (!response.ok) throw new Error('docs-manifest.json could not be loaded');
+            return response.json();
+          });
+          const files = (manifest.docs || []).map((name) => ({ name }));
+          renderDocLinks(files);
+          await loadDoc(selectedFile(files[0]?.name), files);
+        } catch (error) {
+          pageTitle.textContent = 'Documentation failed to load';
+          docMeta.textContent = 'The docs shell could not load the local manifest or markdown files from .docs.';
+          content.innerHTML = `<p>${escapeHtml(error.message)}</p>`;
           const api = `https://api.github.com/repos/${owner}/${repo}/contents/${docsPath}?ref=${branch}`;
           const response = await fetch(api, { cache: 'no-store' });
           const data = await response.json();
