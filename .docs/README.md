@@ -1,4 +1,15 @@
 # PlexCode Docs Source
+
+This folder is the official docs source for the PlexCode website.
+
+## Contents
+
+- `Docs.PleX.html` — the docs shell / skin
+- `Overview.md` — homepage overview content
+- `Orign.md` — source and publishing notes
+- additional markdown files — automatically shown in the docs sidebar
+
+## Automatic section sync
  
 This folder is the official docs source for the PlexCode website.
  
