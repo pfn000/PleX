@@ -9,31 +9,9 @@
 *.TAG linguist-vendored
 .Attributes linguist-vendored
 *.Khon linguist-vendored
-# Make .plxcode files show up in the language bar as Sway (neon green).
-*.plxcode linguist-language=Sway
-
-# Hide "NCOM Systems" .plx and .plxcode files so they don't appear in the bar.
-*NCOM Systems*.plx linguist-vendored
-*NCOM Systems*.plxcode linguist-vendored
-
-# Hide custom marker/metadata files so GitHub doesn't mislabel them (only if you want them hidden).
-# If you want them to contribute to the bar with custom colors, leave these commented out.
-# *.TAG linguist-vendored
-# .Attributes linguist-vendored
-# *.Khon linguist-vendored
 
 # Optional: hide ALL .plx files if you want (uncomment if needed).
 # *.plx linguist-vendored
-
-# Force .plxcode to always be counted (in case it was ignored before).
-*.plxcode linguist-detectable=true
-# Map custom file types to built-in GitHub Linguist colors.
-# Yellow-ish: JavaScript (#f1e05a)
-*.TAG linguist-language=JavaScript
-# Blue: Python (#3572A5)
-.Attributes linguist-language=Python
-# Pink-ish: C++ (#f34b7d)
-*.Khon linguist-language=C++
 
 # Force .plxcode to always be counted (in case it was ignored before).
 *.plxcode linguist-detectable=true
