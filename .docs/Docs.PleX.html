@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docs.PleX.html</title>
+    <meta name="description" content="PlexCode documentation shell that auto-discovers markdown files from the .docs folder." />
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/pfn000/PleX/main/Assets/Images/PleX%20code.png" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07100e;
+        --panel: rgba(16, 22, 20, 0.82);
+        --panel-strong: rgba(9, 12, 11, 0.94);
+        --panel-soft: rgba(255, 255, 255, 0.03);
+        --border: rgba(160, 255, 214, 0.12);
+        --text: #edf7f2;
+        --muted: #97b2a8;
+        --accent: #00f58c;
+        --accent-soft: rgba(0, 245, 140, 0.14);
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(0, 245, 140, 0.08), transparent 28%),
+          linear-gradient(180deg, #08110f 0%, #040707 100%);
+      }
+      body.menu-open { overflow: hidden; }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; }
+      code, pre, p, li, h1, h2, h3, h4 { overflow-wrap: anywhere; }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        min-height: 74px;
+        padding: 0 1rem;
+        border-bottom: 1px solid var(--border);
+        background: rgba(10, 14, 13, 0.72);
+        backdrop-filter: blur(20px) saturate(150%);
+        -webkit-backdrop-filter: blur(20px) saturate(150%);
+      }
+
+      .brand-wrap {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        min-width: 0;
+        flex: 1 1 auto;
+      }
+
+      .brand-logo {
+        width: min(220px, 38vw);
+        height: 46px;
+        flex: 0 0 auto;
+        background: url('https://raw.githubusercontent.com/pfn000/PleX/main/Assets/Images/PleXcode%20Banner.PNG') left center / contain no-repeat;
+      }
+
+      .brand-copy strong { display: block; font-size: 1rem; }
+      .brand-copy span { display: block; color: var(--muted); font-size: 0.86rem; }
+
+      .topnav {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+      }
+
+      .topnav a,
+      .menu-toggle,
+      .mobile-close,
+      .mobile-menu-link,
+      .edit-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0.78rem 1rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .topnav a.active,
+      .mobile-menu-link.active {
+        background: var(--accent-soft);
+        color: var(--text);
+      }
+
+      .app-shell {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr) 220px;
+        gap: 1.25rem;
+        width: min(100% - 2rem, 1600px);
+        margin: 1.25rem auto;
+        align-items: start;
+      }
+
+      .sidebar,
+      .content-card,
+      .toc,
+      .mobile-menu-panel {
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .sidebar,
+      .toc {
+        position: sticky;
+        top: 92px;
+        padding: 1rem;
+      }
+
+      .sidebar h2,
+      .toc h2,
+      .mobile-menu-panel h2,
+      .mobile-menu-panel h3 {
+        margin: 0 0 0.8rem;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .doc-list,
+      .toc-list,
+      .mobile-menu-list,
+      .mobile-menu-actions {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.35rem;
+      }
+
+      .doc-list a,
+      .toc-list a,
+      .mobile-menu-list a {
+        display: block;
+        padding: 0.72rem 0.8rem;
+        border-radius: 12px;
+        color: var(--muted);
+        transition: background-color 0.18s ease, color 0.18s ease;
+      }
+
+      .doc-list a:hover,
+      .doc-list a.active,
+      .toc-list a:hover,
+      .mobile-menu-list a:hover,
+      .mobile-menu-list a.active {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+      }
+
+      .doc-list a.active,
+      .mobile-menu-list a.active {
+        background: var(--accent-soft);
+        border-left: 3px solid var(--accent);
+      }
+
+      .content-card {
+        min-width: 0;
+        padding: clamp(1.25rem, 2vw, 2rem);
+      }
+
+      .eyebrow {
+        margin-bottom: 0.65rem;
+        color: var(--muted);
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      #pageTitle {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.3rem);
+        line-height: 1.05;
+      }
+
+      #docMeta {
+        margin-top: 0.9rem;
+        padding: 0.9rem 1rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: var(--panel-soft);
+        color: var(--muted);
+      }
+
+      .edit-link {
+        margin-top: 0.85rem;
+        display: none;
+        width: fit-content;
+      }
+
+      .edit-link.revealed { display: inline-flex; }
+
+      #content {
+        margin-top: 1.2rem;
+      }
+
+      #content h1,
+      #content h2,
+      #content h3,
+      #content h4 {
+        scroll-margin-top: 98px;
+      }
+
+      #content h1 { font-size: clamp(2rem, 4vw, 3rem); margin-top: 0; }
+      #content h2 { font-size: clamp(1.45rem, 2.8vw, 2rem); margin-top: 2rem; }
+      #content h3 { font-size: 1.18rem; margin-top: 1.4rem; }
+      #content p,
+      #content li { color: #d5e7e0; line-height: 1.75; }
+      #content a { color: #8cecc0; text-decoration: underline; }
+      #content pre {
+        padding: 1rem;
+        border-radius: 16px;
+        overflow-x: auto;
+        background: #06100d;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      #content :not(pre) > code {
+        padding: 0.15rem 0.4rem;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+      }
+      #content blockquote {
+        margin: 1rem 0;
+        padding: 0.2rem 1rem;
+        border-left: 3px solid var(--accent);
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 0 12px 12px 0;
+      }
+
+      .mobile-menu-backdrop,
+      .mobile-menu-panel {
+        display: none;
+      }
+
+      .footer {
+        width: min(100% - 2rem, 1600px);
+        margin: 0 auto 1.5rem;
+        padding: 1rem 1.25rem;
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-left {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-logo-button {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .footer-logo {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        background: url('https://raw.githubusercontent.com/pfn000/PleX/main/Assets/Images/NCOM%20Logo.png') center / contain no-repeat;
+      }
+
+      .footer-note {
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .footer a { color: #8cecc0; text-decoration: underline; }
+      .menu-toggle,
+      .mobile-close { display: none; }
+
+      @media (max-width: 1180px) {
+        .app-shell {
+          grid-template-columns: 260px minmax(0, 1fr);
+        }
+        .toc { display: none; }
+      }
+
+      @media (max-width: 880px) {
+        .app-shell { grid-template-columns: 1fr; }
+        .sidebar { display: none; }
+        .menu-toggle { display: inline-flex; }
+
+        .mobile-menu-backdrop {
+          position: fixed;
+          inset: 0;
+          z-index: 70;
+          background: rgba(3, 7, 6, 0.64);
+          backdrop-filter: blur(10px) saturate(150%);
+          -webkit-backdrop-filter: blur(10px) saturate(150%);
+        }
+
+        .mobile-menu-panel {
+          position: fixed;
+          top: 84px;
+          left: 0.75rem;
+          right: 0.75rem;
+          z-index: 80;
+          padding: 1rem;
+          border-radius: 24px;
+          background: var(--panel-strong);
+          box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+          backdrop-filter: blur(26px) saturate(170%);
+          -webkit-backdrop-filter: blur(26px) saturate(170%);
+          max-height: calc(100vh - 100px);
+          overflow-y: auto;
+        }
+
+        .mobile-menu-panel.open,
+        .mobile-menu-backdrop.open { display: block; }
+
+        .mobile-menu-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.75rem;
+          margin-bottom: 0.9rem;
+        }
+
+        .mobile-menu-copy {
+          margin: 0.35rem 0 0;
+          color: var(--muted);
+          line-height: 1.5;
+        }
+
+        .mobile-close {
+          display: inline-flex;
+          flex: 0 0 auto;
+        }
+
+        .mobile-menu-actions {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          margin-bottom: 1rem;
+        }
+
+        .mobile-menu-link {
+          justify-content: flex-start;
+          border-radius: 16px;
+          min-height: 48px;
+          text-align: left;
+        }
+
+        .mobile-menu-sections {
+          padding: 0.95rem;
+          border-radius: 18px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: rgba(255, 255, 255, 0.03);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .brand-logo { width: min(150px, 42vw); height: 34px; }
+        .brand-copy span { display: none; }
+        .topbar { padding: 0 0.75rem; }
+        .topnav a:not(.menu-toggle) { display: none; }
+        .app-shell,
+        .footer { width: min(100% - 1rem, 1600px); }
+        .content-card { padding: 1rem; }
+        #docMeta { padding: 0.85rem; }
+        .mobile-menu-actions { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-wrap">
+        <span class="brand-logo" aria-hidden="true"></span>
+        <div class="brand-copy">
+          <strong>PlexCode Docs</strong>
+          <span>Official markdown docs synced from the root .docs folder</span>
+        </div>
+      </div>
+      <nav class="topnav" aria-label="Main navigation">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+        <a href="./Docs.PleX.html" class="active">Home</a>
+        <a href="https://github.com/pfn000/PleX/tree/main/.docs" target="_blank" rel="noreferrer">Documentation</a>
+        <a href="https://github.com/pfn000/PleX" target="_blank" rel="noreferrer">News</a>
+        <a href="https://github.com/pfn000/PleX/archive/refs/heads/main.zip" target="_blank" rel="noreferrer">Download</a>
+      </nav>
+    </header>
+
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" hidden></div>
+    <aside class="mobile-menu-panel" id="mobileMenu" aria-label="Mobile menu" hidden>
+      <div class="mobile-menu-header">
+        <div>
+          <h2>Docs menu</h2>
+          <p class="mobile-menu-copy">A simpler glass menu with the same synced markdown sections.</p>
+        </div>
+        <button class="mobile-close" id="mobileMenuClose" type="button">Close</button>
+      </div>
+      <div class="mobile-menu-actions">
+        <a class="mobile-menu-link active" href="./Docs.PleX.html">Home</a>
+        <a class="mobile-menu-link" href="https://github.com/pfn000/PleX/tree/main/.docs" target="_blank" rel="noreferrer">Documentation</a>
+        <a class="mobile-menu-link" href="https://github.com/pfn000/PleX" target="_blank" rel="noreferrer">News</a>
+        <a class="mobile-menu-link" href="https://github.com/pfn000/PleX/archive/refs/heads/main.zip" target="_blank" rel="noreferrer">Download</a>
+      </div>
+      <section class="mobile-menu-sections">
+        <h3>Sections</h3>
+        <ul class="mobile-menu-list" id="mobileDocList">
+          <li><a href="#">Loading markdown files…</a></li>
+        </ul>
+      </section>
+    </aside>
+
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <h2>Sections</h2>
+        <ul class="doc-list" id="docList">
+          <li><a href="#">Loading markdown files…</a></li>
+        </ul>
+      </aside>
+
+      <main class="content-card">
+        <div class="eyebrow">How to use PlexCode docs</div>
+        <h1 id="pageTitle">Loading documentation…</h1>
+        <div id="docMeta">This HTML skin loads markdown directly from the published .docs folder so the site keeps working without the GitHub API.</div>
+        <a id="editLink" class="edit-link" href="#" target="_blank" rel="noreferrer">Edit on GitHub</a>
+        <article id="content"></article>
+      </main>
+
+      <aside class="toc">
+        <h2>On this page</h2>
+        <ul class="toc-list" id="tocList">
+          <li><a href="#">Loading headings…</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-left">
+        <button class="footer-logo-button" id="logoReveal" type="button" aria-label="NCOM Systems logo">
+          <span class="footer-logo" aria-hidden="true"></span>
+        </button>
+        <div>
+          <div>© 2026 NCOM Systems. All rights reserved.</div>
+          <div class="footer-note">Triple-click the logo to reveal the private edit shortcut.</div>
+        </div>
+      </div>
+      <a href="https://github.com/pfn000/PleX/blob/main/LICENSE.md" target="_blank" rel="noreferrer">Legal</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      const owner = 'pfn000';
+      const repo = 'PleX';
+      const branch = 'main';
+      const manifestPath = './docs-manifest.json';
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+      const mobileMenuClose = document.getElementById('mobileMenuClose');
+      const docList = document.getElementById('docList');
+      const mobileDocList = document.getElementById('mobileDocList');
+      const pageTitle = document.getElementById('pageTitle');
+      const docMeta = document.getElementById('docMeta');
+      const editLink = document.getElementById('editLink');
+      const content = document.getElementById('content');
+      const tocList = document.getElementById('tocList');
+      const logoReveal = document.getElementById('logoReveal');
+
+      function prettyTitle(file) {
+        return file.replace(/\.md$/i, '').replace(/[-_]+/g, ' ');
+      }
+
+      function slugify(text) {
+        return text.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-');
+      }
+
+      function selectedFile(defaultFile) {
+        const url = new URL(window.location.href);
+        return url.searchParams.get('doc') || defaultFile;
+      }
+
+      function escapeHtml(value) {
+        return value.replace(/[<>&]/g, (ch) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[ch]));
+      }
+
+      function closeMobileMenu() {
+        document.body.classList.remove('menu-open');
+        mobileMenu.classList.remove('open');
+        mobileMenuBackdrop.classList.remove('open');
+        mobileMenu.hidden = true;
+        mobileMenuBackdrop.hidden = true;
+        menuToggle?.setAttribute('aria-expanded', 'false');
+      }
+
+      function openMobileMenu() {
+        document.body.classList.add('menu-open');
+        mobileMenu.hidden = false;
+        mobileMenuBackdrop.hidden = false;
+        mobileMenu.classList.add('open');
+        mobileMenuBackdrop.classList.add('open');
+        menuToggle?.setAttribute('aria-expanded', 'true');
+      }
+
+      function renderToc() {
+        const headings = [...content.querySelectorAll('h2, h3')];
+        if (!headings.length) {
+          tocList.innerHTML = '<li><a href="#top">Top</a></li>';
+          return;
+        }
+        headings.forEach((heading) => {
+          if (!heading.id) heading.id = slugify(heading.textContent || 'section');
+        });
+        tocList.innerHTML = headings
+          .map((heading) => `<li><a href="#${heading.id}">${heading.textContent}</a></li>`)
+          .join('');
+      }
+
+      function applyActiveState(selectedName) {
+        [docList, mobileDocList].forEach((list) => {
+          list.querySelectorAll('a[data-file]').forEach((link) => {
+            link.classList.toggle('active', link.dataset.file === selectedName);
+          });
+        });
+      }
+
+      async function loadDoc(file, files) {
+        const selected = files.find((entry) => entry.name === file) || files[0];
+        if (!selected) return;
+        const editUrl = `https://github.com/${owner}/${repo}/blob/${branch}/.docs/${selected.name}`;
+        pageTitle.textContent = prettyTitle(selected.name);
+        docMeta.innerHTML = `Source: <code>/.docs/${selected.name}</code> · loaded from the published Pages artifact.`;
+        editLink.href = editUrl;
+        const markdown = await fetch(`./${encodeURIComponent(selected.name)}`, { cache: 'no-store' }).then((response) => {
+          if (!response.ok) throw new Error(`Failed to load ${selected.name}`);
+          return response.text();
+        });
+        if (window.marked) {
+          marked.setOptions({ headerIds: false, mangle: false });
+          content.innerHTML = marked.parse(markdown);
+        } else {
+          content.innerHTML = `<pre>${escapeHtml(markdown)}</pre>`;
+        }
+        renderToc();
+        applyActiveState(selected.name);
+        closeMobileMenu();
+      }
+
+      function renderDocLinks(files) {
+        const markup = files.map((file) => {
+          const href = `?doc=${encodeURIComponent(file.name)}`;
+          return `<li><a href="${href}" data-file="${file.name}"><strong>${prettyTitle(file.name)}</strong></a></li>`;
+        }).join('');
+        docList.innerHTML = markup;
+        mobileDocList.innerHTML = markup;
+      }
+
+      async function init() {
+        try {
+          const manifest = await fetch(manifestPath, { cache: 'no-store' }).then((response) => {
+            if (!response.ok) throw new Error('docs-manifest.json could not be loaded');
+            return response.json();
+          });
+          const files = (manifest.docs || []).map((name) => ({ name }));
+          renderDocLinks(files);
+          await loadDoc(selectedFile(files[0]?.name), files);
+        } catch (error) {
+          pageTitle.textContent = 'Documentation failed to load';
+          docMeta.textContent = 'The docs shell could not load the local manifest or markdown files from .docs.';
+          content.innerHTML = `<p>${escapeHtml(error.message)}</p>`;
+          tocList.innerHTML = '<li><a href="#">Unavailable</a></li>';
+        }
+      }
+
+      menuToggle?.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('open')) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      });
+      mobileMenuClose?.addEventListener('click', closeMobileMenu);
+      mobileMenuBackdrop?.addEventListener('click', closeMobileMenu);
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeMobileMenu();
+      });
+
+      logoReveal?.addEventListener('click', (event) => {
+        if (event.detail >= 3) {
+          editLink.classList.add('revealed');
+          editLink.focus();
+        }
+      });
+
+      init();
+    </script>
+  </body>
+</html>

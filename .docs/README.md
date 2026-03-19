@@ -1,17 +1,19 @@
-# Project Documentation Site
+# PlexCode Docs Source
 
-This `.docs` directory is the source for the project's official documentation website.
+This folder is the official docs source for the PlexCode website.
 
-## Suggested GitHub setup
+## Contents
 
-If you are using GitHub Pages:
-1. Go to **Settings → Pages**.
-2. Set **Build and deployment** source to **Deploy from a branch**.
-3. Choose your branch and set the folder to **/ .docs** (if available), or copy this content to `/docs` if your repository UI does not allow hidden folders.
+- `Docs.PleX.html` — the docs shell / skin
+- `Overview.md` — homepage overview content
+- `Orign.md` — source and publishing notes
+- additional markdown files — automatically shown in the docs sidebar
 
-If you are using GitHub Spaces/Docs hosting, point the docs source to this `.docs` directory.
+## Automatic section sync
 
-## Files
+The website discovers markdown files from this folder through a generated `docs-manifest.json`, so adding a new `.md` file here automatically creates a new section in the sidebar when GitHub Pages rebuilds the site without editing the HTML skin.
 
-- `index.md` — landing page for the docs site.
 
+## Published manifest
+
+GitHub Pages generates `docs-manifest.json` during deployment so the HTML shell can load the local markdown files directly from the published `/.docs` artifact instead of depending on the GitHub API at runtime.
