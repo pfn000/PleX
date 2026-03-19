@@ -17,13 +17,18 @@ PleX is 100% new, modern, and unrelated.
 The name comes from **“Complex”** — simplified into a language that feels direct, physical, and intentional.
 
 
-### 📋 Table of Contents
+### 📋 Table of Contents  
 - [Core Philosophy](#core-philosophy)
 - [The Deliberate Doctrine](#the-deliberate-doctrine)
 - [Behold the Flow Operator](#behold-the-flow-operator)
 - [Kinetic Vocabulary](#kinetic-vocabulary)
 - [Quick Start Examples](#quick-start)
 - [Legal & Restrictions](#legal)
+## Needed Assets/Libraries
+- [@ncomsystems.co](https://github.com/pfn000/PleX/tree/main/%40ncomsystems.co)
+- [NudeSDK](https://github.com/pfn000/PleX/tree/main/%40ncomsystems.co/Nude/SDK)
+- [Plex-Library](https://github.com/pfn000/PleX/blob/main/%40ncomsystems.co/plex-lib.!!)
+---  
 
 ## __The "Deliberate" Doctrine__
 
