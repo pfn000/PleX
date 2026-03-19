@@ -5,7 +5,7 @@
 The PleX code, including all source files, algorithms, and proprietary language elements, is owned exclusively by NCOM Systems. “Plex” and any related trademarks are proprietary to NCOM Systems.
 
 > [!CAUTION] 
-> .plxcode files ARE NOT [Perl](https://www.perl.org) Files .plxcode will be seen as `NCOM Systems` Programming Language. 
+> **`.plxcode`** files ARE NOT [Perl](https://www.perl.org) Files .plxcode will be seen as `NCOM Systems` Programming Language. 
 > Perl will **Not** be allowed to press legal suit from `NCOM Systems` class distinction that separates from ".plx perl files"
 ## Permitted Use
 You are granted a limited, non-exclusive, non-transferable right to view this repository for personal, non-commercial use only.
