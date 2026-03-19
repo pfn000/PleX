@@ -1,0 +1,17 @@
+# Make .plxcode files show up in the language bar.
+*.plxcode linguist-language=Sway
+
+# Hide "NCOM Systems" .plx and .plxcode files so they don't appear in the bar.
+*NCOM?Systems*.plx linguist-vendored
+*NCOM?Systems*.plxcode linguist-vendored
+
+# Hide custom marker/metadata files so GitHub doesn't mislabel them as built-in languages.
+*.TAG linguist-vendored
+.Attributes linguist-vendored
+*.Khon linguist-vendored
+
+# Optional: hide ALL .plx files if you want (uncomment if needed).
+# *.plx linguist-vendored
+
+# Force .plxcode to always be counted (in case it was ignored before).
+*.plxcode linguist-detectable=true
