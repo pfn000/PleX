@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="icon" type="image/png" sizes="50x50" href="https://raw.githubusercontent.com/pfn000/PleX/main/Assets/Images/PleX%20code.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Docs.PleX.html</title>
@@ -16,6 +17,9 @@
         --panel-soft: rgba(255, 255, 255, 0.04);
         --border: rgba(160, 255, 214, 0.14);
         --border-strong: rgba(255, 255, 255, 0.12);
+        --panel: rgba(16, 22, 20, 0.82);
+        --panel-soft: rgba(255, 255, 255, 0.03);
+        --border: rgba(160, 255, 214, 0.12);
         --text: #edf7f2;
         --muted: #97b2a8;
         --accent: #00f58c;
@@ -37,6 +41,9 @@
       body.menu-open { overflow: hidden; }
       a { color: inherit; text-decoration: none; }
       button { font: inherit; }
+          linear-gradient(180deg, #08110f 0%, #040707 100%);
+      }
+      a { color: inherit; text-decoration: none; }
       code, pre, p, li, h1, h2, h3, h4 { overflow-wrap: anywhere; }
 
       .topbar {
@@ -53,6 +60,9 @@
         background: rgba(10, 14, 13, 0.7);
         backdrop-filter: blur(22px) saturate(165%);
         -webkit-backdrop-filter: blur(22px) saturate(165%);
+        background: rgba(10, 14, 13, 0.72);
+        backdrop-filter: blur(20px) saturate(150%);
+        -webkit-backdrop-filter: blur(20px) saturate(150%);
       }
 
       .brand-wrap {
@@ -85,6 +95,12 @@
       .mobile-quick-link,
       .edit-link,
       .mobile-close {
+        gap: 0.4rem;
+        flex-wrap: wrap;
+      }
+
+      .topnav a,
+      .menu-toggle {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -93,6 +109,7 @@
         border-radius: 999px;
         border: 1px solid var(--border);
         background: rgba(255, 255, 255, 0.035);
+        background: rgba(255, 255, 255, 0.03);
         color: var(--text);
         font-weight: 600;
       }
@@ -101,6 +118,7 @@
       .mobile-quick-link.active,
       .doc-list a.active,
       .mobile-doc-list a.active {
+      .topnav a.active {
         background: var(--accent-soft);
         color: var(--text);
       }
@@ -118,6 +136,7 @@
       .content-card,
       .toc,
       .mobile-sheet {
+      .toc {
         border: 1px solid var(--border);
         border-radius: 22px;
         background: var(--panel);
@@ -135,6 +154,7 @@
       .toc h2,
       .mobile-sheet h2,
       .mobile-sheet h3 {
+      .toc h2 {
         margin: 0 0 0.8rem;
         font-size: 0.82rem;
         text-transform: uppercase;
@@ -146,6 +166,7 @@
       .toc-list,
       .mobile-doc-list,
       .mobile-quick-links {
+      .toc-list {
         list-style: none;
         margin: 0;
         padding: 0;
@@ -162,6 +183,12 @@
         color: var(--muted);
         transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
         border: 1px solid transparent;
+      .toc-list a {
+        display: block;
+        padding: 0.72rem 0.8rem;
+        border-radius: 12px;
+        color: var(--muted);
+        transition: background-color 0.18s ease, color 0.18s ease;
       }
 
       .doc-list a:hover,
@@ -169,6 +196,7 @@
       .toc-list a:hover,
       .mobile-doc-list a:hover,
       .mobile-doc-list a.active {
+      .toc-list a:hover {
         background: rgba(255, 255, 255, 0.04);
         color: var(--text);
       }
@@ -177,6 +205,9 @@
       .mobile-doc-list a.active {
         border-color: rgba(0, 245, 140, 0.18);
         box-shadow: inset 3px 0 0 var(--accent);
+      .doc-list a.active {
+        background: var(--accent-soft);
+        border-left: 3px solid var(--accent);
       }
 
       .content-card {
@@ -301,6 +332,8 @@
       .footer a { color: #8cecc0; text-decoration: underline; }
       .menu-toggle,
       .mobile-close { display: none; }
+      .footer a { color: #8cecc0; text-decoration: underline; }
+      .menu-toggle { display: none; }
 
       @media (max-width: 1180px) {
         .app-shell {
@@ -395,6 +428,17 @@
           border: 1px solid rgba(255, 255, 255, 0.08);
           background: rgba(255, 255, 255, 0.035);
         }
+        .sidebar {
+          position: fixed;
+          top: 84px;
+          left: 1rem;
+          width: min(88vw, 340px);
+          transform: translateX(-110%);
+          transition: transform 0.2s ease;
+          z-index: 60;
+        }
+        .sidebar.open { transform: translateX(0); }
+        .menu-toggle { display: inline-flex; }
       }
 
       @media (max-width: 720px) {
@@ -407,6 +451,8 @@
         .content-card { padding: 1rem; }
         #docMeta { padding: 0.85rem; }
         .mobile-quick-links { grid-template-columns: 1fr; }
+        .app-shell,
+        .footer { width: min(100% - 1rem, 1600px); }
       }
     </style>
   </head>
@@ -453,6 +499,14 @@
       </section>
     </aside>
 
+        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false">Menu</button>
+        <a href="./Docs.PleX.html" class="active">Home</a>
+        <a href="https://github.com/pfn000/PleX/tree/main/.docs" target="_blank" rel="noreferrer">Documentation</a>
+        <a href="https://github.com/pfn000/PleX" target="_blank" rel="noreferrer">News</a>
+        <a href="https://github.com/pfn000/PleX/archive/refs/heads/main.zip" target="_blank" rel="noreferrer">Download</a>
+      </nav>
+    </header>
+
     <div class="app-shell">
       <aside class="sidebar" id="sidebar">
         <h2>Sections</h2>
@@ -486,6 +540,8 @@
           <div>© 2026 NCOM Systems. All rights reserved.</div>
           <div class="footer-note">Triple-click the logo to reveal the private edit shortcut.</div>
         </div>
+        <span class="footer-logo" aria-hidden="true"></span>
+        <span>© 2026 NCOM Systems. All rights reserved.</span>
       </div>
       <a href="https://github.com/pfn000/PleX/blob/main/LICENSE.md" target="_blank" rel="noreferrer">Legal</a>
     </footer>
@@ -509,6 +565,13 @@
       const content = document.getElementById('content');
       const tocList = document.getElementById('tocList');
       const logoReveal = document.getElementById('logoReveal');
+      const sidebar = document.getElementById('sidebar');
+      const menuToggle = document.getElementById('menuToggle');
+      const docList = document.getElementById('docList');
+      const pageTitle = document.getElementById('pageTitle');
+      const docMeta = document.getElementById('docMeta');
+      const content = document.getElementById('content');
+      const tocList = document.getElementById('tocList');
 
       function prettyTitle(file) {
         return file.replace(/\.md$/i, '').replace(/[-_]+/g, ' ');
@@ -591,6 +654,11 @@
         pageTitle.textContent = prettyTitle(selected.name);
         docMeta.innerHTML = `Source: <code>/.docs/${selected.name}</code> · markdown synced automatically from GitHub.`;
         editLink.href = editUrl;
+      async function loadDoc(file, files) {
+        const selected = files.find((entry) => entry.name === file) || files[0];
+        if (!selected) return;
+        pageTitle.textContent = prettyTitle(selected.name);
+        docMeta.innerHTML = `Source: <code>/.docs/${selected.name}</code> · <a href="https://github.com/${owner}/${repo}/blob/${branch}/.docs/${selected.name}" target="_blank" rel="noreferrer">Edit on GitHub</a>`;
         const markdown = await fetch(selected.download_url, { cache: 'no-store' }).then((response) => response.text());
         if (window.marked) {
           marked.setOptions({ headerIds: false, mangle: false });
@@ -610,6 +678,10 @@
         }).join('');
         docList.innerHTML = markup;
         mobileDocList.innerHTML = markup;
+          content.innerHTML = `<pre>${markdown.replace(/[<>&]/g, (ch) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[ch]))}</pre>`;
+        }
+        renderToc();
+        docList.querySelectorAll('a').forEach((link) => link.classList.toggle('active', link.dataset.file === selected.name));
       }
 
       async function init() {
@@ -619,11 +691,20 @@
           const data = await response.json();
           const files = sortFiles(data.filter((item) => item.type === 'file' && item.name.toLowerCase().endsWith('.md')));
           renderDocLinks(files);
+          const files = sortFiles((await fetch(api, { cache: 'no-store' }).then((response) => response.json()))
+            .filter((item) => item.type === 'file' && item.name.toLowerCase().endsWith('.md')));
+
+          docList.innerHTML = files.map((file) => {
+            const href = `?doc=${encodeURIComponent(file.name)}`;
+            return `<li><a href="${href}" data-file="${file.name}"><strong>${prettyTitle(file.name)}</strong></a></li>`;
+          }).join('');
+
           await loadDoc(selectedFile(files[0]?.name), files);
         } catch (error) {
           pageTitle.textContent = 'Documentation failed to load';
           docMeta.textContent = 'The HTML shell could not discover markdown files from the .docs folder.';
           content.innerHTML = `<p>${escapeHtml(error.message)}</p>`;
+          content.innerHTML = `<p>${error.message}</p>`;
           tocList.innerHTML = '<li><a href="#">Unavailable</a></li>';
         }
       }
@@ -646,6 +727,8 @@
           editLink.classList.add('revealed');
           editLink.focus();
         }
+        const open = sidebar.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(open));
       });
 
       init();
