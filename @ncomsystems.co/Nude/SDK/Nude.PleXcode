@@ -1,0 +1,54 @@
+.plx | Nude [@ncom.co/~/Nude/SDK.!!] 
+╰──➤ version | 0.1
+╰──➤ Build | 1
+   ╰──➤ [Nude](https://ncomsystems.co/~/Nude/SDK/Script.!!)
+╰──➤ Show | Icon
+    ╰──➤ Hail | @PleX-Code.png
+    ╰──➤ Source | @./workspaces/Plex-Code/IMG_0580-0
+    ╰──➤ Type | Devicon
+    ╰──➤ Size | 10px,10px
+@Attributes
+╰──➤ @ncomsystems.co/~/Nude/SDK/Script.!!
+Build | .TAG
+Script | TAP
+'''TAG
+.TAG | Signature's
+╰──➤ Sign | @Saidie000 (NCOM;//SaidieQN@ncomsystems.co) [ @Saidie Quinn N ]
+╰──➤ Auth | Dev [ Developer ] ~ ncomsystems.co/~/Hail/@SaidieQN.dev
+'''
+
+Argu~!! | STORE
+╰──➤ Store |!!|~!! ncomsystems.co/Nude/SDK/assets.!! 
+
+Assets.!! | Arguments
+╰──➤ Argu~!! | n~ n://Assets.!!
+╰──➤ Argu~!! | CHeck \\\ Mark |!!|~!!
+    ╰──➤ ALL[States | Local]
+╰──➤ Argu~!! | CALL[States]
+    ╰──➤ |~|~!! n~ n://Build/plex-lib.!! | Import | Needed --assets
+        ╰──➤ Check | --assets --Updates --Calls --Builds
+
+lib.!! 
+╰──➤ Hail | needed --assets --Updates --Calls --Builds
+    ╰──➤ Install | [needed] --assets --Updates --Calls --Builds --version[latest]
+╰──➤ ~!! Update [needed] --assets --Updates --Calls --Builds --version[latest]
+Check | --assets --Updates --Calls --Builds --version
+╰──➤ |~| Link_~!!
+╰──➤ |~| Laod_~!! 
+╰──➤ |~| Check_~!! && Bundles --ALL
+╰──➤ |~| \\\ |!!|~!! Store[Latest](--Laoded && --Bundles)
+   ╰──➤ Read | Check-Sum | @Saidie000 && @ncomsystems.co/Nude/SDK/Assets.!! && @ncomsystems.co/plex-lib.!! 
+Argu~!! | Verify
+╰──➤ Hail |@Saidie000 && @ncomsystems.co/Nude/SDK/Assets.!! && @ncomsystems.co/plex-lib.!!
+╰──➤ Hail | --assets --Updates --Calls --Builds --version --writes
+
+Argu~!! | UserServices 
+╰──➤ Load | @User && id:string 
+╰──➤ @user CORE | UserServices.!! : @.UserServices.!! 
+╰──➤ Load | ALL[States] && id:string 
+╰──➤ NetKit.Fetch | "/api/user/" && id 
+╰──➤ @Nude.plx |--Nude && @User 
+╰──➤ result | @.USER CORE | |!!|~!! /MAIN 
+╰──➤ svc | UserServices 
+╰──➤ load | user [@USER] 
+╰──➤ show | @USER
