@@ -110,6 +110,16 @@
         display: block;
         object-fit: contain;
         filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.3));
+        width: 2.5rem;
+        height: 2.5rem;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(0, 245, 140, 0.25), rgba(42, 84, 67, 0.55));
+        border: 1px solid rgba(174, 255, 219, 0.2);
+        font-weight: 800;
+        color: var(--accent);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
       }
 
       .brand-copy {
@@ -508,6 +518,7 @@
         flex-wrap: wrap;
       }
 
+<<<<<<< codex/create-directory-structure-for-project-i2vqd8
       .footer-signoff {
         display: inline-flex;
         align-items: center;
@@ -523,6 +534,8 @@
         flex-shrink: 0;
       }
 
+=======
+>>>>>>> main
       @media (max-width: 980px) {
         .hero-grid,
         .two-up,
@@ -583,7 +596,11 @@
     <header class="site-nav">
       <div class="nav-bar">
         <a class="brand" href="#top" aria-label="PlexCode Docs home">
+<<<<<<< codex/create-directory-structure-for-project-i2vqd8
           <img class="brand-mark" src="Assets/Images/PleXcode Banner.PNG" alt="PlexCode logo banner" />
+=======
+          <div class="brand-mark">PX</div>
+>>>>>>> main
           <div class="brand-copy">
             <strong>PlexCode Docs</strong>
             <span>Language, tooling, runtime, and API reference</span>
@@ -912,10 +929,14 @@ pipeline deploy(target: "edge") {
           </div>
 
           <div class="footer-bottom">
+<<<<<<< codex/create-directory-structure-for-project-i2vqd8
             <div class="footer-signoff">
               <img class="footer-logo" src="Assets/Images/NCOM Logo.png" alt="NCOM Systems company logo" />
               <span>© 2026 NCOM Systems. All rights reserved.</span>
             </div>
+=======
+            <span>© 2026 PlexCode. Built for docs, launch readiness, and mobile-first readability.</span>
+>>>>>>> main
             <span>Dark mode · Frosted glass nav · Responsive footer</span>
           </div>
         </div>
