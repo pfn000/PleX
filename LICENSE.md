@@ -8,9 +8,9 @@ The PleX code, including all source files, algorithms, and proprietary language 
 You are granted a limited, non-exclusive, non-transferable right to view this repository for personal, non-commercial use only.
 
 ✅ You MAY:
-- Download any .plx file
+- Download any .plxCode file
 - Use PleX files in VS Code or Visual Studio
-- Write your own .plx files
+- Write your own .plxCode files
 
 ## Strict Restrictions
 You MAY NOT:
@@ -34,9 +34,9 @@ This license is not open source. All rights are expressly reserved.
 > [!TIP]
 > **What you CAN do**
 >
-> 👍 Download any `.plx` file  
+> 👍 Download any `.plxCode` file  
 > 👍 Use in VS Code or Visual Studio  
-> 👍 Write your own `.plx` files
+> 👍 Write your own `.plxCode` files
 
 > [!CAUTION]
 > **What you CANNOT do**
@@ -47,7 +47,7 @@ This license is not open source. All rights are expressly reserved.
 
 > [!NOTE]
 > Questions? Feel free to email me (respectfully):  
-> [Official_Emmi@outlook.com](mailto:Official_Emmi@outlook.com)
+> [SaidieQN@ncomsystems.co](Official_Emmi@outlook.com)
 
 > [!WARNING]
 > **Abuse or misuse** (spam, harassment, identity theft, stealing my contact info, socials, or NCOM name) will be treated as infringement and pursued legally.
