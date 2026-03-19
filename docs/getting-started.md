@@ -1,3 +1,10 @@
+---
+layout: default
+title: Getting Started
+description: Docs workflow and setup
+source_path: getting-started.md
+permalink: /getting-started.html
+---
 # Getting started
 
 ## Purpose
@@ -6,6 +13,15 @@ This docs site is intended to stay synced with GitHub by treating the markdown f
 
 ## How the docs shell works
 
+- each published page is authored in markdown
+- the sidebar links keep readers inside the website
+- GitHub Pages renders the markdown into the shared docs layout
+- `Docs.plexcode.html` remains available as a compatibility redirect to the main site root
+
+## How to add a new docs page
+
+1. Create a new markdown file in `docs/` with front matter.
+2. Add a sidebar link for it in `docs/_layouts/default.html`.
 - `index.html` is the GitHub Pages entrypoint.
 - The left navigation loads markdown pages from the `docs/` folder.
 - The main content area renders those markdown files into a docs-style reading layout.
@@ -22,6 +38,7 @@ This docs site is intended to stay synced with GitHub by treating the markdown f
 
 - expand installation and setup instructions for PlexCode itself
 - add language reference material backed by real `.plxcode` examples
+- document package, runtime, and tooling workflows as those parts of the project mature
 - document package/runtime/tooling workflows as those parts of the project mature
 # Getting Started
 

@@ -14,6 +14,20 @@ If you are using GitHub Pages:
 4. Set the folder to **/docs**.
 5. Save the settings and wait for the site to publish.
 
+## Site structure
+
+- `index.md` — homepage content rendered by Jekyll.
+- `_layouts/default.html` — shared docs layout with the sidebar and top navigation.
+- `assets/site.css` — dark responsive docs styling.
+- `Docs.plexcode.html` — compatibility redirect to the site root.
+
+## Included pages
+
+- `getting-started.md`
+- `site-setup.md`
+- `github-linguist-upstream-custom-language.md`
+- `security.md`
+- `legal.md`
 ## Pages entrypoint
 
 - `index.html` — primary GitHub Pages entrypoint for the live site.

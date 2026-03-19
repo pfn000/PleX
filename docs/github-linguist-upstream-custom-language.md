@@ -1,3 +1,11 @@
+---
+layout: default
+title: GitHub Linguist Guide
+description: Upstream contribution checklist
+source_path: github-linguist-upstream-custom-language.md
+permalink: /github-linguist-upstream-custom-language.html
+---
+
 # Contributing PleX file types to GitHub Linguist
 
 This guide is a project-specific checklist for contributing a real custom language definition upstream to [`github-linguist/linguist`](https://github.com/github-linguist/linguist).
