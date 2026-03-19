@@ -5,6 +5,14 @@
 *NCOM?Systems*.plx linguist-vendored
 *NCOM?Systems*.plxcode linguist-vendored
 
+# Hide custom marker/metadata files so GitHub doesn't mislabel them as built-in languages.
+*.TAG linguist-vendored
+.Attributes linguist-vendored
+*.Khon linguist-vendored
+
+# Optional: hide ALL .plx files if you want (uncomment if needed).
+# *.plx linguist-vendored
+
 # Optional: hide ALL .plx files if you want (uncomment if needed).
 # *.plx linguist-vendored
 
