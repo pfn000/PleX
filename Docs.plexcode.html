@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlexCode Docs</title>
+    <meta
+      name="description"
+      content="PlexCode documentation portal for language overview, syntax, tooling, workflows, and platform guidance."
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07110f;
+        --bg-accent: radial-gradient(circle at top, rgba(0, 245, 140, 0.14), transparent 32%),
+          linear-gradient(180deg, #091311 0%, #050807 100%);
+        --panel: rgba(10, 17, 15, 0.72);
+        --panel-strong: rgba(7, 13, 11, 0.92);
+        --border: rgba(180, 255, 222, 0.14);
+        --text: #effaf5;
+        --muted: #9bb6ad;
+        --accent: #00f58c;
+        --accent-soft: rgba(0, 245, 140, 0.14);
+        --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+        --radius-xl: 28px;
+        --radius-lg: 22px;
+        --radius-md: 16px;
+        --content-width: 1180px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        color: var(--text);
+        background: var(--bg-accent);
+        min-height: 100vh;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      img,
+      svg {
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      p,
+      li,
+      code,
+      pre,
+      h1,
+      h2,
+      h3,
+      h4 {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .page-shell {
+        width: min(100% - 2rem, var(--content-width));
+        margin: 0 auto;
+      }
+
+      .site-nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+      }
+
+      .nav-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        width: min(100% - 2rem, var(--content-width));
+        margin: 0 auto;
+        padding: 0.9rem 1rem;
+        border: 1px solid var(--border);
+        background: rgba(6, 10, 9, 0.58);
+        backdrop-filter: blur(20px) saturate(150%);
+        -webkit-backdrop-filter: blur(20px) saturate(150%);
+        border-radius: 999px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.26);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+        min-width: 0;
+      }
+
+      .brand-mark {
+        width: clamp(7.5rem, 18vw, 11.5rem);
+        height: auto;
+        display: block;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.3));
+      }
+
+      .brand-copy {
+        min-width: 0;
+      }
+
+      .brand-copy strong,
+      .brand-copy span {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .brand-copy strong {
+        font-size: 0.98rem;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-copy span {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a,
+      .nav-cta,
+      .mobile-panel a {
+        border-radius: 999px;
+        padding: 0.72rem 1rem;
+        color: var(--muted);
+        transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible,
+      .mobile-panel a:hover,
+      .mobile-panel a:focus-visible {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+      }
+
+      .nav-cta {
+        background: linear-gradient(135deg, rgba(0, 245, 140, 0.96), rgba(92, 255, 176, 0.82));
+        color: #03120b;
+        font-weight: 700;
+        box-shadow: 0 16px 32px rgba(0, 245, 140, 0.24);
+      }
+
+      .nav-cta:hover,
+      .nav-cta:focus-visible {
+        transform: translateY(-1px);
+      }
+
+      .menu-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      .mobile-panel {
+        display: none;
+        width: min(100% - 2rem, var(--content-width));
+        margin: 0.75rem auto 0;
+        padding: 0.8rem;
+        border-radius: 26px;
+        border: 1px solid var(--border);
+        background: rgba(8, 13, 12, 0.78);
+        backdrop-filter: blur(20px) saturate(140%);
+        -webkit-backdrop-filter: blur(20px) saturate(140%);
+        box-shadow: var(--shadow);
+      }
+
+      .mobile-panel.open {
+        display: grid;
+        gap: 0.4rem;
+      }
+
+      .hero {
+        padding: 2rem 0 1rem;
+      }
+
+      .hero-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--border);
+        background: linear-gradient(160deg, rgba(12, 21, 18, 0.95), rgba(6, 10, 9, 0.84));
+        box-shadow: var(--shadow);
+        padding: clamp(1.5rem, 2vw, 2rem);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 0.9fr;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .hero-card::after {
+        content: "";
+        position: absolute;
+        inset: auto -12% -28% auto;
+        width: 22rem;
+        height: 22rem;
+        background: radial-gradient(circle, rgba(0, 245, 140, 0.22), transparent 64%);
+        pointer-events: none;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.45rem 0.8rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: #caffea;
+        border: 1px solid rgba(130, 255, 198, 0.18);
+        font-size: 0.84rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 5vw, 4.6rem);
+        line-height: 1.02;
+        margin: 1rem 0;
+        letter-spacing: -0.04em;
+      }
+
+      .hero p {
+        font-size: clamp(1rem, 1.7vw, 1.18rem);
+        color: #c8ddd6;
+        max-width: 62ch;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 1.5rem;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        padding: 0.95rem 1.2rem;
+        border-radius: 16px;
+        border: 1px solid rgba(157, 255, 210, 0.14);
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .button.primary {
+        background: linear-gradient(135deg, rgba(0, 245, 140, 1), rgba(94, 255, 178, 0.82));
+        color: #02150b;
+        box-shadow: 0 18px 36px rgba(0, 245, 140, 0.2);
+      }
+
+      .stat-grid,
+      .card-grid,
+      .footer-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .stat-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .stat-card,
+      .doc-card,
+      .code-panel,
+      .footer-panel {
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .stat-card {
+        padding: 1rem;
+      }
+
+      .stat-card strong {
+        display: block;
+        font-size: 1.55rem;
+        margin-bottom: 0.15rem;
+      }
+
+      .stat-card span {
+        color: var(--muted);
+      }
+
+      .preview {
+        padding: 1rem;
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(181, 255, 223, 0.14);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .code-panel {
+        overflow: hidden;
+      }
+
+      .code-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        color: var(--muted);
+      }
+
+      .code-dots {
+        display: inline-flex;
+        gap: 0.5rem;
+      }
+
+      .code-dots span {
+        width: 0.72rem;
+        height: 0.72rem;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.22);
+      }
+
+      pre {
+        margin: 0;
+        padding: 1rem;
+        font-size: 0.95rem;
+        color: #d9fff0;
+        background: rgba(2, 7, 6, 0.84);
+        overflow-x: auto;
+      }
+
+      main {
+        padding-bottom: 4rem;
+      }
+
+      section {
+        padding: 1rem 0 0;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .section-header h2 {
+        margin: 0;
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+      }
+
+      .section-header p {
+        margin: 0;
+        color: var(--muted);
+        max-width: 58ch;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .doc-card {
+        padding: 1.2rem;
+      }
+
+      .doc-card h3 {
+        margin-top: 0;
+        margin-bottom: 0.45rem;
+      }
+
+      .doc-card p,
+      .doc-card li {
+        color: #d0e3dc;
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.42rem 0.72rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        background: rgba(255, 255, 255, 0.03);
+        color: #cbe6dc;
+        font-size: 0.88rem;
+      }
+
+      .two-up {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 1rem;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 38rem;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 0.9rem 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        vertical-align: top;
+      }
+
+      th {
+        color: #d9fff0;
+        font-size: 0.88rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      td {
+        color: #c4d9d1;
+      }
+
+      .cta-panel {
+        margin-top: 1.2rem;
+        padding: clamp(1.3rem, 2vw, 1.8rem);
+        border-radius: var(--radius-xl);
+        border: 1px solid rgba(133, 255, 200, 0.14);
+        background: linear-gradient(145deg, rgba(0, 245, 140, 0.12), rgba(7, 12, 10, 0.86));
+        box-shadow: var(--shadow);
+      }
+
+      footer {
+        padding: 1rem 0 3rem;
+      }
+
+      .footer-panel {
+        padding: 1.3rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.2fr repeat(3, minmax(0, 1fr));
+      }
+
+      .footer-title {
+        margin: 0 0 0.75rem;
+        font-size: 1rem;
+      }
+
+      .footer-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.6rem;
+        color: var(--muted);
+      }
+
+      .footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+        flex-wrap: wrap;
+      }
+
+      .footer-signoff {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+        min-width: 0;
+      }
+
+      .footer-logo {
+        width: clamp(3rem, 8vw, 4.5rem);
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.3));
+        flex-shrink: 0;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .two-up,
+        .card-grid,
+        .footer-grid,
+        .stat-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links,
+        .nav-cta {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+        }
+
+        .nav-bar {
+          border-radius: 28px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        body {
+          font-size: 15px;
+        }
+
+        .page-shell,
+        .nav-bar,
+        .mobile-panel {
+          width: min(100% - 1rem, var(--content-width));
+        }
+
+        .hero-card,
+        .doc-card,
+        .stat-card,
+        .footer-panel,
+        .cta-panel {
+          border-radius: 20px;
+        }
+
+        .button,
+        .nav-links a,
+        .mobile-panel a,
+        .nav-cta {
+          width: 100%;
+          justify-content: center;
+        }
+
+        table {
+          min-width: 30rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="nav-bar">
+        <a class="brand" href="#top" aria-label="PlexCode Docs home">
+          <img class="brand-mark" src="Assets/Images/PleXcode Banner.PNG" alt="PlexCode logo banner" />
+          <div class="brand-copy">
+            <strong>PlexCode Docs</strong>
+            <span>Language, tooling, runtime, and API reference</span>
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#overview">Overview</a>
+          <a href="#language">Language</a>
+          <a href="#tooling">Tooling</a>
+          <a href="#guides">Guides</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <a class="nav-cta" href="#start">Start building</a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu">
+          ☰
+        </button>
+      </div>
+
+      <nav class="mobile-panel" id="mobileMenu" aria-label="Mobile navigation">
+        <a href="#overview">Overview</a>
+        <a href="#language">Language</a>
+        <a href="#tooling">Tooling</a>
+        <a href="#guides">Guides</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="#start">Start building</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="page-shell">
+          <div class="hero-card">
+            <div class="hero-grid">
+              <div>
+                <div class="eyebrow">Dark-mode language portal</div>
+                <h1>Build, document, and ship PlexCode with a docs site designed for real language teams.</h1>
+                <p>
+                  This starter documentation page is built for a brand new programming language launch. It includes a frosted glass navigation system, responsive mobile layouts, wrapped typography, docs-focused content blocks, and a production-style footer with legal and about links.
+                </p>
+                <div class="hero-actions">
+                  <a class="button primary" href="#start">Read getting started</a>
+                  <a class="button" href="#reference">Explore the reference</a>
+                </div>
+              </div>
+
+              <div class="preview">
+                <div class="code-panel">
+                  <div class="code-header">
+                    <span class="code-dots"><span></span><span></span><span></span></span>
+                    <span>hello-world.plxcode</span>
+                  </div>
+                  <pre><code>module launch;
+
+fn main() {
+  let greeting = "Hello from PlexCode";
+  runtime.print(greeting);
+}
+
+pipeline deploy(target: "edge") {
+  optimize level: 3;
+  secure strict;
+}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview">
+        <div class="page-shell">
+          <div class="section-header">
+            <div>
+              <h2>Docs homepage essentials</h2>
+            </div>
+            <p>
+              A complete docs landing page should help new users understand what the language is, how to get started fast, and where to find deeper references without getting lost on smaller screens.
+            </p>
+          </div>
+
+          <div class="stat-grid">
+            <article class="stat-card">
+              <strong>Fast onboarding</strong>
+              <span>Hero, install, syntax, and examples surfaced above the fold.</span>
+            </article>
+            <article class="stat-card">
+              <strong>Mobile ready</strong>
+              <span>Responsive cards, wrapped text, flexible nav, and scrollable tables.</span>
+            </article>
+            <article class="stat-card">
+              <strong>Launch friendly</strong>
+              <span>Footer, legal, community, and roadmap sections included for a public docs portal.</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="start">
+        <div class="page-shell two-up">
+          <article class="doc-card">
+            <div class="section-header">
+              <div>
+                <h2>Getting started</h2>
+              </div>
+              <p>Give new developers a zero-conf path from install to first successful run.</p>
+            </div>
+            <ol>
+              <li>Install the PlexCode CLI and runtime for your platform.</li>
+              <li>Create a project with <code>plex init my-app</code>.</li>
+              <li>Run <code>plex dev</code> to launch the local environment.</li>
+              <li>Ship with <code>plex deploy</code> after tests and policy checks pass.</li>
+            </ol>
+            <div class="chip-row" aria-label="Quick links">
+              <span class="chip">Install</span>
+              <span class="chip">CLI</span>
+              <span class="chip">Editor setup</span>
+              <span class="chip">Examples</span>
+            </div>
+          </article>
+
+          <article class="doc-card" id="reference">
+            <div class="section-header">
+              <div>
+                <h2>Reference structure</h2>
+              </div>
+              <p>Organize the language docs so readers can discover concepts and APIs quickly.</p>
+            </div>
+            <ul>
+              <li><strong>Language guide:</strong> syntax, types, modules, errors, concurrency.</li>
+              <li><strong>Runtime guide:</strong> execution model, packaging, permissions, environment.</li>
+              <li><strong>Standard library:</strong> IO, collections, crypto, networking, time.</li>
+              <li><strong>Tooling:</strong> CLI commands, formatters, linters, package manager, CI.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="language">
+        <div class="page-shell">
+          <div class="section-header">
+            <div>
+              <h2>Language foundations</h2>
+            </div>
+            <p>
+              This section gives a brand new language site the core information readers expect: philosophy, syntax overview, and the basic feature map for day-one adoption.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            <article class="doc-card">
+              <h3>Design goals</h3>
+              <p>Explain what PlexCode optimizes for, such as readability, deployment safety, package reproducibility, and runtime observability.</p>
+            </article>
+            <article class="doc-card">
+              <h3>Syntax guide</h3>
+              <p>Document expressions, declarations, modules, traits/interfaces, and pipeline configuration in a single well-linked section.</p>
+            </article>
+            <article class="doc-card">
+              <h3>Type system</h3>
+              <p>Describe primitives, generics, nullability, compile-time constraints, and error handling patterns with real examples.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="tooling">
+        <div class="page-shell two-up">
+          <article class="doc-card">
+            <div class="section-header">
+              <div>
+                <h2>Tooling and workflows</h2>
+              </div>
+              <p>Make CLI workflows easy to scan and easy to use on phones.</p>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Command</th>
+                    <th>Purpose</th>
+                    <th>Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>plex init</code></td>
+                    <td>Create a new app, package, or library skeleton.</td>
+                    <td>Use templates for API, web, and runtime modules.</td>
+                  </tr>
+                  <tr>
+                    <td><code>plex test</code></td>
+                    <td>Run unit, integration, and snapshot suites.</td>
+                    <td>Integrate coverage and CI-friendly output.</td>
+                  </tr>
+                  <tr>
+                    <td><code>plex fmt</code></td>
+                    <td>Apply official formatting rules across the workspace.</td>
+                    <td>Keeps style consistent for contributors.</td>
+                  </tr>
+                  <tr>
+                    <td><code>plex deploy</code></td>
+                    <td>Package, validate, and release build artifacts.</td>
+                    <td>Include environment policy and permission checks.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="doc-card">
+            <div class="section-header">
+              <div>
+                <h2>What a new language docs site should include</h2>
+              </div>
+              <p>Use this as a launch checklist for public-facing documentation quality.</p>
+            </div>
+            <ul>
+              <li>Version switcher and release notes archive.</li>
+              <li>Install matrix for macOS, Linux, Windows, and containers.</li>
+              <li>Migration guides for language changes and deprecations.</li>
+              <li>Accessibility notes and keyboard navigation expectations.</li>
+              <li>Security policy, disclosure route, and package trust model.</li>
+              <li>Clear legal footer links and support/community destinations.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="guides">
+        <div class="page-shell">
+          <div class="section-header">
+            <div>
+              <h2>Popular guides</h2>
+            </div>
+            <p>Help users jump directly into the workflows they are most likely to need on day one and week one.</p>
+          </div>
+          <div class="card-grid">
+            <article class="doc-card">
+              <h3>Build your first service</h3>
+              <p>Create a lightweight starter that introduces routing, modules, environment configuration, and deployment.</p>
+            </article>
+            <article class="doc-card">
+              <h3>Package publishing</h3>
+              <p>Walk through dependency metadata, semantic versioning, changelog requirements, and release signing.</p>
+            </article>
+            <article class="doc-card">
+              <h3>Editor integrations</h3>
+              <p>Document syntax highlighting, formatting, linting, snippets, and language server installation.</p>
+            </article>
+          </div>
+
+          <div class="cta-panel">
+            <h3>Launch-ready docs messaging</h3>
+            <p>
+              When you are introducing a brand new language, the docs should explain the why, reduce fear during the first install, and make the community/legal/support routes obvious from every page.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="page-shell">
+          <div class="section-header">
+            <div>
+              <h2>Frequently asked questions</h2>
+            </div>
+            <p>These are the questions most readers ask before adopting a new language in production.</p>
+          </div>
+          <div class="card-grid">
+            <article class="doc-card">
+              <h3>Is PlexCode production ready?</h3>
+              <p>Use this answer area to describe release maturity, compatibility guarantees, and your support horizon.</p>
+            </article>
+            <article class="doc-card">
+              <h3>What platforms are supported?</h3>
+              <p>List officially supported runtimes, architectures, package managers, and deployment targets.</p>
+            </article>
+            <article class="doc-card">
+              <h3>How does versioning work?</h3>
+              <p>Document semantic versioning, preview channels, and upgrade expectations for developers and teams.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="page-shell">
+        <div class="footer-panel">
+          <div class="footer-grid">
+            <section>
+              <h3 class="footer-title">PlexCode Docs</h3>
+              <p>
+                A dark-mode documentation starter page for launching a new programming language with polished navigation, responsive layouts, and a docs-grade footer.
+              </p>
+            </section>
+            <section>
+              <h3 class="footer-title">Docs</h3>
+              <ul class="footer-list">
+                <li><a href="#start">Getting Started</a></li>
+                <li><a href="#language">Language Guide</a></li>
+                <li><a href="#tooling">CLI &amp; Tooling</a></li>
+                <li><a href="#faq">FAQ</a></li>
+              </ul>
+            </section>
+            <section>
+              <h3 class="footer-title">Company</h3>
+              <ul class="footer-list">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </section>
+            <section>
+              <h3 class="footer-title">Legal</h3>
+              <ul class="footer-list">
+                <li><a href="#">Legal</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Security</a></li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="footer-bottom">
+            <div class="footer-signoff">
+              <img class="footer-logo" src="Assets/Images/NCOM Logo.png" alt="NCOM Systems company logo" />
+              <span>© 2026 NCOM Systems. All rights reserved.</span>
+            </div>
+            <span>Dark mode · Frosted glass nav · Responsive footer</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      menuToggle?.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      mobileMenu?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    </script>
+  </body>
+</html>
