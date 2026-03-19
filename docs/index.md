@@ -20,3 +20,14 @@ This site is driven by the real markdown files committed in the repository's `do
 - [Docs folder](https://github.com/pfn000/PleX/tree/main/docs)
 - [Security policy](../.github/SECURITY.md)
 - [Legal](../.github/LEGAL.md)
+# PleX Official Documentation
+
+Welcome to the official documentation site for **PleX**.
+
+## Quick Links
+
+- [Getting Started](./getting-started.md)
+- [Security](../.github/SECURITY.md)
+- [Code of Conduct](../.github/CODE_OF_CONDUCT.md)
+- [Legal](../.github/LEGAL.md)
+

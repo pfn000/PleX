@@ -23,3 +23,15 @@ This docs site is intended to stay synced with GitHub by treating the markdown f
 - expand installation and setup instructions for PlexCode itself
 - add language reference material backed by real `.plxcode` examples
 - document package/runtime/tooling workflows as those parts of the project mature
+# Getting Started
+
+## Purpose
+
+This docs site provides official project documentation that can be published through GitHub-hosted documentation tooling.
+
+## Next steps
+
+- Add installation instructions.
+- Add configuration and usage guides.
+- Add API or architecture docs.
+
