@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AdvancedInstaller Project File v25.0 -->
+<!-- Compatible with AdvancedInstaller Free, Professional, Enterprise -->
+<Project Name="PleXcodeSDK" Version="1.0" xmlns="http://www.advancedinstaller.com/xsd/1.0">
+
+  <!-- Product Information -->
+  <Product>
+    <Name>PleXcode SDK</Name>
+    <Version>0.1.0</Version>
+    <UpgradeCode>{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}</UpgradeCode>
+    <Language>1033</Language>
+    <CodePage>1252</CodePage>
+    <Manufacturer>NCOM Systems</Manufacturer>
+    <FullVersion>0.1.0.0</FullVersion>
+  </Product>
+
+  <!-- Package Details -->
+  <Package>
+    <Comments>PleXcode Software Development Kit for Windows</Comments>
+    <Description>PleXcode SDK - Native Programming Environment</Description>
+    <Keywords>plex, plexcode, sdk, ncom</Keywords>
+    <Platform>x86,x64</Platform>
+    <Languages>1033</Languages>
+    <SummaryCodepage>1252</SummaryCodepage>
+    <Version>0.1.0</Version>
+  </Package>
+
+  <!-- Publisher Information -->
+  <Publisher>
+    <DisplayName>NCOM Systems &amp; NCOM SDK Team</DisplayName>
+    <Company>NCOM Systems (c) 2025</Company>
+    <Developer>Saidie Quinn Newara</Developer>
+    <SignedDate>4/1/2026</SignedDate>
+    <Copyright>© 2026 NCOM Systems. All rights reserved.</Copyright>
+    <SupportEmail>official_emmi@outlook.com</SupportEmail>
+  </Publisher>
+
+  <!-- Media -->
+  <Media>
+    <CabinetFiles>CAB</CabinetFiles>
+    <PromptCD>False</PromptCD>
+  </Media>
+
+  <!-- Features -->
+  <Features Level="1" Order="1">
+    <Feature Level="1" Order="1" ConfigurableDirectory="INSTALLDIR" Display="Feature" InstallDefault="local" Name="Main" Title="PleXcode SDK">
+      <ComponentRef Id="PleXcodeCore" />
+      <ComponentRef Id="PleXcodeTools" />
+      <ComponentRef Id="PleXcodeBridges" />
+      <ComponentRef Id="JaneAI" />
+      <ComponentRef Id="RegistryEntries" />
+    </Feature>
+    <Feature Level="1" Order="2" Display="Feature" InstallDefault="local" Name="Docs" Title="Documentation">
+      <ComponentRef Id="Documentation" />
+    </Feature>
+  </Features>
+
+  <!-- Directory Structure -->
+  <Directory Id="TARGETDIR" Name="SourceDir">
+    <Directory Id="ProgramFiles64Folder" Name="PFILE">
+      <Directory Id="INSTALLDIR" Name="NCOM">
+        <Component Guid="{B1C2D3E4-F5A6-7B8C-9D0E-F12345678901}" Id="PleXcodeCore" Win64="yes">
+          <File Name="core\runtime.json" />
+          <File Name="core\plex-runtime.exe" />
+        </Component>
+        <Component Guid="{C2D3E4F5-A6B7-8C9D-0E1F-23456789012}" Id="PleXcodeTools" Win64="yes">
+          <File Name="tools\plex.exe" />
+          <File Name="tools\plex-cli.bat" />
+        </Component>
+        <Component Guid="{D3E4F5A6-B7C8-9D0E-1F2A-34567890123}" Id="PleXcodeBridges" Win64="yes">
+          <File Name="bridges\universal-bridge.plx" />
+        </Component>
+        <Component Guid="{E4F5A6B7-C8D9-0E1F-2A3B-45678901234}" Id="JaneAI" Win64="yes">
+          <File Name="jane-ai\core\jane-native.plx" />
+          <File Name="jane-ai\skills\skill-loader.plx" />
+          <File Name="jane-ai\swarm\agent-swarm.plx" />
+        </Component>
+        <Component Guid="{F5A6B7C8-D9E0-1F2A-3B4C-56789012345}" Id="Documentation" Win64="yes">
+          <File Name="README.md" />
+          <File Name="LICENSE.md" />
+        </Component>
+      </Directory>
+    </Directory>
+  </Directory>
+
+  <!-- Registry Entries -->
+  <Component Guid="{12345678-9ABC-DEF1-2345-6789ABCDEF12}" Id="RegistryEntries" Win64="yes">
+    <RegistryKey Id="PleXcodeReg" Key="SOFTWARE\NCOM\PleXcodeSDK">
+      <RegistryValue Name="Version" Type="string" Value="0.1.0" />
+      <RegistryValue Name="InstallPath" Type="string" Value="[INSTALLDIR]" />
+      <RegistryValue Name="Publisher" Type="string" Value="NCOM Systems &amp; NCOM SDK Team" />
+      <RegistryValue Name="Company" Type="string" Value="NCOM Systems (c) 2025" />
+      <RegistryValue Name="Developer" Type="string" Value="Saidie Quinn Newara" />
+      <RegistryValue Name="Signed" Type="string" Value="4/1/2026" />
+    </RegistryKey>
+  </Component>
+
+  <!-- UI Configuration -->
+  <UI>
+    <SplashBitmap>Assets\Images\NCOM_Logo.png</SplashBitmap>
+    <DialogBitmap>Assets\Images\PleXcode_Banner.png</DialogBitmap>
+    <BannerBitmap>Assets\Images\NCOM_Systems_2026_Banner.png</BannerBitmap>
+    
+    <Property Id="ARPPRODUCTICON" Value="Assets\Images\PleXcode_Icon.ico" />
+    
+    <!-- Dialogs to Show -->
+    <ShowDialog Dialog="SplashDialog" Show="true" />
+    <ShowDialog Dialog="LicenseAgreementDialog" Show="true" />
+    <ShowDialog Dialog="FolderDlg" Show="true" />
+    <ShowDialog Dialog="MaintenanceTypeDlg" Show="true" />
+    <ShowDialog Dialog="ReadyDlg" Show="true" />
+    <ShowDialog Dialog="ProgressDlg" Show="true" />
+    <ShowDialog Dialog="VerifyRemoveDlg" Show="true" />
+    <ShowDialog Dialog="VerifyRepairDlg" Show="true" />
+    <ShowDialog Dialog="ExitDialog" Show="true" />
+  </UI>
+
+  <!-- Launch Conditions -->
+  <LaunchConditions>
+    <Condition Message="This application requires Windows 10 or newer.">VersionNT &gt;= 601</Condition>
+    <Condition Message="64-bit processor required.">Intel64</Condition>
+  </LaunchConditions>
+
+  <!-- Application Settings -->
+  <Application>
+    <Name>PleXcode SDK</Name>
+    <Version>0.1.0</Version>
+    <Shortcut>
+      <Name>PleXcode SDK</Name>
+      <Target>[INSTALLDIR]tools\plex.exe</Target>
+      <Icon>Assets\Images\PleXcode_Icon.ico</Icon>
+    </Shortcut>
+  </Application>
+
+  <!-- Build Configuration -->
+  <Build>
+    <OutputFileName>PleXcodeSDK_0.1.0.msi</OutputFileName>
+    <OutputFolder>.\Output</OutputFolder>
+  </Build>
+
+</Project>

@@ -1,0 +1,63 @@
+; AdvancedInstaller Configuration Import File
+; PleXcode SDK v0.1.0
+; Publisher: NCOM Systems & NCOM SDK Team
+; Company: NCOM Systems (c) 2025
+; Developer: Saidie Quinn Newara
+; Signed: 4/1/2026
+
+[Product]
+Name=PleXcode SDK
+Version=0.1.0
+FullVersion=0.1.0.0
+UpgradeCode={A1B2C3D4-E5F6-7890-ABCD-EF1234567890}
+Language=1033
+CodePage=1252
+Manufacturer=NCOM Systems
+
+[Package]
+Description=PleXcode SDK - Native Programming Environment
+Comments=PleXcode Software Development Kit for Windows
+Keywords=plex, plexcode, sdk, ncom
+Platform=x86,x64
+
+[Publisher]
+DisplayName=NCOM Systems & NCOM SDK Team
+Company=NCOM Systems (c) 2025
+Developer=Saidie Quinn Newara
+SignedDate=4/1/2026
+Copyright=© 2026 NCOM Systems. All rights reserved.
+SupportEmail=official_emmi@outlook.com
+
+[Files]
+IncludeSubdirs=True
+SourceRoot=..\..
+
+[UI]
+SplashImage=Assets\Images\NCOM_Logo.png
+DialogImage=Assets\Images\PleXcode_Banner.png
+BannerImage=Assets\Images\NCOM_Systems_2026_Banner.png
+ProductIcon=Assets\Images\PleXcode_Icon.ico
+
+[Dialogs]
+ShowWelcomeDlg=True
+ShowLicenseDlg=True
+ShowFolderDlg=True
+ShowShortCutsDlg=True
+ShowReadyDlg=True
+ShowProgressDlg=True
+ShowFinishedDlg=True
+
+[Registry]
+Company=NCOM
+Product=PleXcodeSDK
+Version=REG_SZ 0.1.0
+Publisher=REG_SZ NCOM Systems & NCOM SDK Team
+Developer=REG_SZ Saidie Quinn Newara
+Company=REG_SZ NCOM Systems (c) 2025
+Signed=REG_SZ 4/1/2026
+
+[Build]
+MSI_Name=PleXcodeSDK_0.1.0.msi
+OutputFolder=.\Output
+CAB=embedded
+Compress=True

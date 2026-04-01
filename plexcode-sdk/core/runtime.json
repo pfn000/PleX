@@ -1,0 +1,20 @@
+{
+  "plex_version": "0.1.0",
+  "runtime_type": "native",
+  "transpiled": false,
+  "architecture": {
+    "lanes_cpu": 256,
+    "lanes_memory": 1024,
+    "lanes_io": 64,
+    "lanes_network": 32
+  },
+  "security": {
+    "level": "maximum",
+    "require_signature": true,
+    "unsigned_rejection": true
+  },
+  "publisher": "NCOM Systems & NCOM SDK Team",
+  "company": "NCOM Systems (c) 2025",
+  "developer": "Saidie Quinn Newara",
+  "signed": "4/1/2026"
+}
