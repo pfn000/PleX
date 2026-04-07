@@ -1,4 +1,4 @@
-# Orign
+# Origin
 
 This page explains the origin and structure of the PlexCode docs site.
 
