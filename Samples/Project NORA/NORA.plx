@@ -1,6 +1,6 @@
 .plx | NORA
 ╰──➤ /!! NORA AI built from NCOM Systems PlayGround Studios by LLM Labs & PleX Labs & teams
-╰──➤ Build | 1
+╰──➤ Build | 1∧
 /!!_____________________________________________________
 /!! LLM Labs project | 201937+eL 
 /!! @LLMLABS | Foor 12 
