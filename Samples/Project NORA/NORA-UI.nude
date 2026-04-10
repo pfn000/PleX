@@ -1,0 +1,231 @@
+UI | .plx --Nude
+
+Panel~!! ChatWindow
+╰──➤ @attributes
+   ╰──➤ theme | "dark"
+   ╰──➤ layout | "vertical"
+╰──➤ Argu~!!
+   ╰──➤ messages | []
+   ╰──➤ input | [""]
+   ╰──➤ is_streaming | false
+
+Panel~!! MessageArea
+╰──➤ @attributes
+   ╰──➤ scroll | "auto"
+   ╰──➤ height | "80vh"
+╰──➤ Logic~!!
+   ╰──➤ render_messages
+   ╰──➤ scroll_to_bottom
+
+Panel~!! Message
+╰──➤ Argu~!!
+   ╰──➤ role | ["user", "assistant", "system"]
+   ╰──➤ content | [""]
+   ╰──➤ timestamp | [""]
+╰──➤ @User | action
+   ╰──➤ Copy | Button[copy]
+      ╰──➤ Pulse | n~ /clipboard
+         ╰──➤ @content
+   ╰──➤ Regenerate | Button[regen]
+      ╰──➤ Send~!! | regenerate_request
+
+Panel~!! InputArea
+╰──➤ @attributes
+   ╰──➤ position | "bottom"
+   ╰──➤ height | "auto"
+╰──➤ Argu~!!
+   ╰──➤ text | [""]
+   ╰──➤ attachments | []
+╰──➤ @User | action
+   ╰──➤ Type | Input[main]
+      ╰──➤ Store~!! @text | value
+   ╰──➤ Submit | Button[send]
+      ╰──➤ Check~!! | text.length > 0
+      ╰──➤ Send~!! | chat_request
+      ╰──➤ Store~!! @text | [""]
+   ╰──➤ Attach | Button[attach]
+      ╰──➤ Sniff | Devices[FileSystem]
+      ╰──➤ Store~!! @attachments | selected_files
+   ╰──➤ Voice | Button[mic]
+      ╰──➤ Pulse~!! n~ /audio_in
+         ╰──➤ @0xAUDIO_IN_LANE
+      ╰──➤ Call~!! | transcribe
+      ╰──➤ Store~!! @text | transcription
+
+Panel~!! SettingsPanel
+╰──➤ @attributes
+   ╰──➤ position | "sidebar"
+   ╰──➤ width | "300px"
+
+Panel~!! ModelSelector
+╰──➤ Argu~!!
+   ╰──➤ current_model | "nora-core"
+   ╰──➤ available_models | ["nora-core", "nora-vision", "nora-coder"]
+╰──➤ @User | action
+   ╰──➤ Select | Dropdown[model]
+      ╰──➤ Store~!! @current_model | selected
+      ╰──➤ Call~!! | reload_model
+
+Panel~!! ContextSettings
+╰──➤ Argu~!!
+   ╰──➤ context_size | 131072
+   ╰──➤ rag_enabled | true
+   ╰──➤ memory_enabled | true
+╰──➤ @User | action
+   ╰──➤ Slide | Slider[context]
+      ╰──➤ Store~!! @context_size | value
+   ╰──➤ Toggle | Switch[rag]
+      ╰──➤ Store~!! @rag_enabled | value
+   ╰──➤ Toggle | Switch[memory]
+      ╰──➤ Store~!! @memory_enabled | value
+
+Panel~!! AgentSettings
+╰──➤ Argu~!!
+   ╰──➤ max_agents | 4
+   ╰──➤ auto_spawn | true
+╰──➤ @User | action
+   ╰──➤ Slide | Slider[max_agents]
+      ╰──➤ Store~!! @max_agents | value
+   ╰──➤ Toggle | Switch[auto_spawn]
+      ╰──➤ Store~!! @auto_spawn | value
+
+Panel~!! SkillCreator
+╰──➤ @attributes
+   ╰──➤ modal | true
+   ╰──➤ width | "600px"
+╰──➤ Argu~!!
+   ╰──➤ skill_name | [""]
+   ╰──➤ description | [""]
+   ╰──➤ instructions | [""]
+   ╰──➤ triggers | []
+
+Panel~!! SkillNameInput
+╰──➤ @User | action
+   ╰──➤ Type | Input[skill_name]
+      ╰──➤ Store~!! @skill_name | value
+
+Panel~!! DescriptionInput
+╰──➤ @User | action
+   ╰──➤ Type | Textarea[description]
+      ╰──➤ Store~!! @description | value
+
+Panel~!! InstructionsEditor
+╰──➤ @User | action
+   ╰──➤ Type | CodeEditor[instructions]
+      ╰──➤ Store~!! @instructions | value
+
+Panel~!! TriggerPhrases
+╰──➤ @User | action
+   ╰──➤ Add | Button[add_trigger]
+      ╰──➤ Store~!! @triggers | [...triggers, new_trigger]
+   ╰──➤ Remove | Button[remove_trigger]
+      ╰──➤ Store~!! @triggers | filter(t => t.id !== target.id)
+
+Panel~!! CreateSkillButton
+╰──➤ @User | action
+   ╰──➤ Click | Button[create_skill]
+      ╰──➤ Check~!! | skill_name.length > 0
+      ╰──➤ Check~!! | description.length > 0
+      ╰──➤ Bundle~!!
+         ╰──➤ skill_data
+            ╰──➤ name | @skill_name
+            ╰──➤ description | @description
+            ╰──➤ instructions | @instructions
+            ╰──➤ triggers | @triggers
+      ╰──➤ Send~!! | create_skill_request
+      ╰──➤ Show | "Skill created successfully!"
+
+Panel~!! SwarmMonitor
+╰──➤ @attributes
+   ╰──➤ position | "floating"
+   ╰──➤ draggable | true
+╰──➤ Argu~!!
+   ╰──➤ active_agents | []
+   ╰──➤ task_queue | []
+
+Panel~!! AgentCard
+╰──➤ Argu~!!
+   ╰──➤ agent_id | [""]
+   ╰──➤ agent_type | ["coder", "researcher", "reasoner", "writer"]
+   ╰──➤ status | ["idle", "working", "completed", "error"]
+   ╰──➤ current_task | [""]
+   ╰──➤ progress | 0
+╰──➤ Logic~!!
+   ╰──➤ render_status_badge
+   ╰──➤ render_progress_bar
+   ╰──➤ render_task_info
+╰──➤ @User | action
+   ╰──➤ Click | Button[cancel]
+      ╰──➤ Send~!! | cancel_agent_request
+   ╰──➤ Click | Button[view_output]
+      ╰──➤ Show | agent_output_modal
+
+Panel~!! TaskQueue
+╰──➤ Logic~!!
+   ╰──➤ render_queue_items
+   ╰──➤ update_positions
+╰──➤ @User | action
+   ╰──➤ Drag | QueueItem
+      ╰──➤ Store~!! @task_queue | reorder(source, target)
+
+Panel~!! MultimodalControls
+╰──➤ @attributes
+   ╰──➤ position | "toolbar"
+
+Panel~!! VisionControl
+╰──➤ Argu~!!
+   ╰──➤ vision_enabled | true
+   ╰──➤ camera_active | false
+╰──➤ @User | action
+   ╰──➤ Toggle | Switch[vision]
+      ╰──➤ Store~!! @vision_enabled | value
+   ╰──➤ Click | Button[camera]
+      ╰──➤ Sniff | Devices[Camera]
+      ╰──➤ Store~!! @camera_active | true
+      ╰──➤ Pulse~!! n~ /vision
+         ╰──➤ @0xVISION_LANE
+
+Panel~!! SpeechControl
+╰──➤ Argu~!!
+   ╰──➤ stt_enabled | true
+   ╰──➤ tts_enabled | true
+   ╰──➤ is_listening | false
+   ╰──➤ is_speaking | false
+╰──➤ @User | action
+   ╰──➤ Click | Button[listen]
+      ╰──➤ Store~!! @is_listening | true
+      ╰──➤ Pulse~!! n~ /audio_in
+         ╰──➤ @0xAUDIO_IN_LANE
+      ╰──➤ Call~!! | start_transcription
+   ╰──➤ Click | Button[speak]
+      ╰──➤ Store~!! @is_speaking | true
+      ╰──➤ Pulse~!! n~ /audio_out
+         ╰──➤ @0xAUDIO_OUT_LANE
+      ╰──➤ Call~!! | synthesize_response
+   ╰──➤ Toggle | Switch[auto_speak]
+      ╰──➤ Store~!! @tts_enabled | value
+
+Build | @styles
+╰──➤ colors
+   ╰──➤ primary | "#6366f1"
+   ╰──➤ secondary | "#8b5cf6"
+   ╰──➤ background | "#0f0f23"
+   ╰──➤ surface | "#1a1a2e"
+   ╰──➤ text | "#e4e4e7"
+   ╰──➤ accent | "#22d3ee"
+   ╰──➤ success | "#22c55e"
+   ╰──➤ warning | "#f59e0b"
+   ╰──➤ error | "#ef4444"
+╰──➤ typography
+   ╰──➤ font_family | "Inter, system-ui, sans-serif"
+   ╰──➤ font_mono | "JetBrains Mono, monospace"
+   ╰──➤ font_size_base | "16px"
+╰──➤ spacing
+   ╰──➤ unit | "8px"
+   ╰──➤ padding | "16px"
+   ╰──➤ margin | "12px"
+   ╰──➤ gap | "8px"
+╰──➤ border
+   ╰──➤ radius | "8px"
+   ╰──➤ width | "1px"
+   ╰──➤ color | "#2a2a4a"

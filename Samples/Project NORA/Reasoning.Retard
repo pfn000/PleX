@@ -1,0 +1,193 @@
+Math | ChainOfThought
+╰──➤ Argu~!!
+   ╰──➤ query | [""]
+   ╰──➤ complexity_score | 0
+   ╰──➤ requires_cot | false
+   ╰──➤ thinking_steps | []
+   ╰──➤ final_answer | [""]
+╰──➤ Logic~!!
+   ╰──➤ Argu~!!
+      ╰──➤ trigger_phrases | ["explain", "why", "how does", "step by step", "analyze", "compare", "prove", "derive"]
+      ╰──➤ complexity_indicators | ["multiple", "several", "relationship", "because", "therefore", "however"]
+   ╰──➤ Math~!!
+      ╰──➤ trigger_match_count | count(query ∩ trigger_phrases)
+      ╰──➤ indicator_match_count | count(query ∩ complexity_indicators)
+      ╰──➤ complexity_score | (trigger_match_count * 2) + indicator_match_count
+      ╰──➤ requires_cot | complexity_score >= 2
+╰──➤ Logic~!!
+   ╰──➤ inject_thinking_prompt
+      ╰──➤ Argu~!!
+         ╰──➤ thinking_prompt | "Let me think through this step by step:\n"
+         ╰──➤ format | "<thinking>{steps}</thinking>\n<answer>{answer}</answer>"
+   ╰──➤ extract_steps
+      ╰──➤ split_by_newline
+      ╰──➤ enumerate_steps
+      ╰──➤ Store~!! @thinking_steps | extracted
+
+Math | TreeOfThought
+╰──➤ Argu~!!
+   ╰──➤ root_problem | [""]
+   ╰──➤ max_branches | 3
+   ╰──➤ max_depth | 4
+   ╰──➤ current_depth | 0
+   ╰──➤ branches | []
+   ╰──➤ pruned | []
+   ╰──➤ best_path | []
+╰──➤ Logic~!!
+   ╰──➤ generate_branches
+      ╰──➤ Argu~!!
+         ╰──➤ parent_node | current_state
+         ╰──➤ branch_prompt | "Generate {max_branches} different approaches to solve this:"
+      ╰──➤ Math~!!
+         ╰──➤ branches | []
+         ╰──➤ i | 0
+         ╰──➤ while i < max_branches
+            ╰──➤ branch[i] | generate_approach(parent_node, i)
+            ╰──➤ i | i + 1
+      ╰──➤ Store~!! @branches | generated
+╰──➤ Logic~!!
+   ╰──➤ evaluate_branches
+      ╰──➤ Math~!!
+         ╰──➤ scores | []
+         ╰──➤ for each branch in @branches
+            ╰──➤ feasibility | rate_feasibility(branch) | [0.0, 1.0]
+            ╰──➤ correctness | rate_correctness(branch) | [0.0, 1.0]
+            ╰──➤ efficiency | rate_efficiency(branch) | [0.0, 1.0]
+            ╰──➤ score | (feasibility * 0.4) + (correctness * 0.4) + (efficiency * 0.2)
+            ╰──➤ scores | append(score)
+╰──➤ Logic~!!
+   ╰──➤ prune_branches
+      ╰──➤ Math~!!
+         ╰──➤ threshold | 0.3
+         ╰──➤ for each (branch, score) in zip(@branches, @scores)
+            ╰──➤ Check~!! score < threshold
+               ╰──➤ @pruned | append(branch)
+               ╰──➤ @branches | remove(branch)
+╰──➤ Logic~!!
+   ╰──➤ select_best_path
+      ╰──➤ Math~!!
+         ╰──➤ best_index | argmax(@scores)
+         ╰──➤ @best_path | @branches[best_index]
+      ╰──➤ Check~!! @current_depth < @max_depth
+         ╰──➤ current_depth | current_depth + 1
+         ╰──➤ Call~!! | generate_branches(@best_path)
+
+Math | SelfConsistency
+╰──➤ Argu~!!
+   ╰──➤ problem | [""]
+   ╰──➤ num_attempts | 3
+   ╰──➤ temperature_range | [0.3, 0.7]
+   ╰──➤ attempts | []
+   ╰──➤ consensus_answer | [""]
+   ╰──➤ confidence | 0.0
+╰──➤ Logic~!!
+   ╰──➤ generate_attempts
+      ╰──➤ Math~!!
+         ╰──➤ i | 0
+         ╰──➤ temp_step | (temperature_range[1] - temperature_range[0]) / num_attempts
+         ╰──➤ while i < num_attempts
+            ╰──➤ temperature | temperature_range[0] + (temp_step * i)
+            ╰──➤ attempt[i] | solve(problem, temperature)
+            ╰──➤ i | i + 1
+      ╰──➤ Store~!! @attempts | generated
+╰──➤ Logic~!!
+   ╰──➤ find_consensus
+      ╰──➤ Math~!!
+         ╰──➤ answer_counts | {}
+         ╰──➤ for each attempt in @attempts
+            ╰──➤ normalized | normalize_answer(attempt)
+            ╰──➤ answer_counts[normalized] | answer_counts[normalized] + 1 | 0
+         ╰──➤ consensus_answer | argmax(answer_counts)
+         ╰──➤ confidence | max(answer_counts.values()) / num_attempts
+
+Math | LogicalOperations
+╰──➤ Argu~!!
+   ╰──➤ propositions | []
+   ╰──➤ operators | ["AND", "OR", "NOT", "XOR", "IMPLIES", "IFF"]
+╰──➤ Logic~!!
+   ╰──➤ evaluate
+      ╰──➤ Math~!!
+         ╰──➤ AND | A ∧ B | true if A and B are both true
+         ╰──➤ OR | A ∨ B | true if A or B is true
+         ╰──➤ NOT | ¬A | true if A is false
+         ╰──➤ XOR | A ⊕ B | true if exactly one of A, B is true
+         ╰──➤ IMPLIES | A → B | true if A is false or B is true
+         ╰──➤ IFF | A ↔ B | true if A and B have same truth value
+╰──➤ Logic~!!
+   ╰──➤ modus_ponens
+      ╰──➤ Argu~!!
+         ╰──➤ premise_1 | "A → B" | if A then B
+         ╰──➤ premise_2 | "A" | A is true
+         ╰──➤ conclusion | "B" | therefore B
+      ╰──➤ Math~!!
+         ╰──➤ Check~!! (A → B) ∧ A
+            ╰──➤ valid | true
+            ╰──➤ return B
+╰──➤ Logic~!!
+   ╰──➤ modus_tollens
+      ╰──➤ Argu~!!
+         ╰──➤ premise_1 | "A → B" | if A then B
+         ╰──➤ premise_2 | "¬B" | B is false
+         ╰──➤ conclusion | "¬A" | therefore not A
+      ╰──➤ Math~!!
+         ╰──➤ Check~!! (A → B) ∧ ¬B
+            ╰──➤ valid | true
+            ╰──➤ return ¬A
+
+Math | MathOperations
+╰──➤ Argu~!!
+   ╰──➤ precision | 15
+   ╰──➤ overflow_check | true
+   ╰──➤ underflow_check | true
+╰──➤ Logic~!!
+   ╰──➤ safe_add
+      ╰──➤ Math~!!
+         ╰──➤ Argu~!!
+            ╰──➤ a | 0
+            ╰──➤ b | 0
+         ╰──➤ Check~!! a + b <= MAX_VALUE
+            ╰──➤ result | a + b
+   ╰──➤ safe_multiply
+      ╰──➤ Math~!!
+         ╰──➤ Argu~!!
+            ╰──➤ a | 0
+            ╰──➤ b | 0
+         ╰──➤ Check~!! a * b <= MAX_VALUE
+            ╰──➤ result | a * b
+   ╰──➤ safe_divide
+      ╰──➤ Math~!!
+         ╰──➤ Argu~!!
+            ╰──➤ a | 0
+            ╰──➤ b | 0
+         ╰──➤ Check~!! b != 0
+            ╰──➤ result | a / b
+╰──➤ Logic~!!
+   ╰──➤ symbolic_solve
+      ╰──➤ Argu~!!
+         ╰──➤ equation | [""]
+         ╰──➤ variable | "x"
+      ╰──➤ Math~!!
+         ╰──➤ parse_equation
+         ╰──➤ isolate_variable
+         ╰──➤ simplify_expression
+         ╰──➤ return solution
+
+Math | ZeroTrustValidation
+╰──➤ Argu~!!
+   ╰──➤ input | [""]
+   ╰──➤ expected_type | ["number", "boolean", "string", "array", "object"]
+   ╰──➤ constraints | []
+╰──➤ Logic~!!
+   ╰──➤ validate_type
+      ╰──➤ Check~!! | typeof(input) == expected_type
+╰──➤ Logic~!!
+   ╰──➤ validate_range
+      ╰──➤ Argu~!!
+         ╰──➤ min | -Infinity
+         ╰──➤ max | Infinity
+      ╰──➤ Check~!! | input >= min AND input <= max
+╰──➤ Logic~!!
+   ╰──➤ validate_constraints
+      ╰──➤ Math~!!
+         ╰──➤ for each constraint in @constraints
+            ╰──➤ Check~!! | constraint(input) == true

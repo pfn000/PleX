@@ -1,0 +1,146 @@
+Build | @identity
+╰──➤ name | "NORA"
+╰──➤ full_name | "NCOM Orchestrated Reasoning Agent"
+╰──➤ version | "1.0.0"
+╰──➤ build_date | "2026-04-10"
+╰──➤ creator | "NCOM Systems PlayGround Studios"
+╰──➤ team | "LLM Department"
+╰──➤ author | "Emmi (@Saidie000)"
+╰──➤ contact | "SaidieQN@ncomsystems.co"
+╰──➤ repo | "https://github.com/pfn000/nora-ai"
+
+Build | @models
+╰──➤ base
+   ╰──➤ path | "./models/nora-core.gguf"
+   ╰──➤ source | "Qwen2.5-72B-Instruct"
+   ╰──➤ quantization | "Q4_K_M"
+   ╰──➤ context_size | 131072
+   ╰──➤ parameters | "72B"
+╰──➤ vision
+   ╰──➤ path | "./models/nora-vision.gguf"
+   ╰──➤ source | "Qwen2.5-VL-72B"
+   ╰──➤ type | "mmproj"
+╰──➤ speech_stt
+   ╰──➤ path | "./models/nora-speech.gguf"
+   ╰──➤ source | "whisper-large-v3"
+   ╰──➤ language | "auto"
+╰──➤ speech_tts
+   ╰──➤ path | "./models/nora-tts.gguf"
+   ╰──➤ source | "coqui-xtts-v2"
+   ╰──➤ voice | "default"
+╰──➤ embeddings
+   ╰──➤ path | "./models/nora-embed.gguf"
+   ╰──➤ source | "nomic-embed-text-v1.5"
+   ╰──➤ dimensions | 768
+
+Build | @skills
+╰──➤ builtin_path | "./skills/builtin"
+╰──➤ user_path | "./skills/user"
+╰──➤ hot_reload | true
+╰──➤ trigger_threshold | 0.7
+╰──➤ max_candidates | 5
+╰──➤ builtin
+   ╰──➤ code-review | @skills/builtin/code-review/SKILL.md
+   ╰──➤ debugging | @skills/builtin/debugging/SKILL.md
+   ╰──➤ architecture | @skills/builtin/architecture/SKILL.md
+   ╰──➤ web-search | @skills/builtin/web-search/SKILL.md
+   ╰──➤ summarization | @skills/builtin/summarization/SKILL.md
+   ╰──➤ fact-check | @skills/builtin/fact-check/SKILL.md
+   ╰──➤ logic | @skills/builtin/logic/SKILL.md
+   ╰──➤ math | @skills/builtin/math/SKILL.md
+   ╰──➤ planning | @skills/builtin/planning/SKILL.md
+   ╰──➤ creative-writing | @skills/builtin/creative-writing/SKILL.md
+   ╰──➤ documentation | @skills/builtin/documentation/SKILL.md
+   ╰──➤ plex-code | @skills/builtin/plex-code/SKILL.md
+
+Build | @agents
+╰──➤ max_concurrent | 4
+╰──➤ timeout_seconds | 300
+╰──➤ memory_shared | true
+╰──➤ coder
+   ╰──➤ lane | @0xAGENT_CODER
+   ╰──➤ skills | ["code-review", "debugging", "architecture", "plex-code"]
+   ╰──➤ system_prompt | "You are a senior full-stack developer..."
+╰──➤ researcher
+   ╰──➤ lane | @0xAGENT_RESEARCH
+   ╰──➤ skills | ["web-search", "summarization", "fact-check"]
+   ╰──➤ system_prompt | "You are a meticulous research assistant..."
+╰──➤ reasoner
+   ╰──➤ lane | @0xAGENT_REASON
+   ╰──➤ skills | ["logic", "math", "planning"]
+   ╰──➤ system_prompt | "You are a logical reasoning expert..."
+╰──➤ writer
+   ╰──➤ lane | @0xAGENT_WRITER
+   ╰──➤ skills | ["creative-writing", "documentation", "editing"]
+   ╰──➤ system_prompt | "You are a skilled technical writer..."
+
+Build | @hardware
+╰──➤ gpu
+   ╰──➤ @0xGPU_LANE_0 | "primary_inference"
+   ╰──➤ @0xGPU_LANE_1 | "secondary_inference"
+   ╰──➤ @0xVRAM_BLOCK_A | "model_weights"
+   ╰──➤ @0xVRAM_BLOCK_B | "kv_cache"
+╰──➤ cpu
+   ╰──➤ threads | 8
+   ╰──➤ batch_size | 512
+╰──➤ audio
+   ╰──➤ @0xAUDIO_IN_LANE | "microphone_capture"
+   ╰──➤ @0xAUDIO_OUT_LANE | "speaker_output"
+╰──➤ vision
+   ╰──➤ @0xVISION_LANE | "image_processing"
+
+Build | @data
+╰──➤ vectordb | "./data/vectordb"
+╰──➤ memory | "./data/memory.db"
+╰──➤ logs | "./logs"
+╰──➤ cache | "./cache"
+╰──➤ temp | "./temp"
+
+Build | @api
+╰──➤ host | "0.0.0.0"
+╰──➤ port | 8080
+╰──➤ cors_origins | ["*"]
+╰──➤ rate_limit | 100
+╰──➤ timeout | 300
+╰──➤ endpoints
+   ╰──➤ chat | "/v1/chat/completions"
+   ╰──➤ completions | "/v1/completions"
+   ╰──➤ embeddings | "/v1/embeddings"
+   ╰──➤ models | "/v1/models"
+   ╰──➤ skills | "/v1/skills"
+   ╰──➤ agents | "/v1/agents/spawn"
+
+Build | @reasoning
+╰──➤ cot
+   ╰──➤ enabled | true
+   ╰──➤ auto_trigger | true
+   ╰──➤ trigger_phrases | ["explain", "why", "how does", "step by step", "analyze", "compare"]
+╰──➤ tot
+   ╰──➤ enabled | true
+   ╰──➤ max_branches | 3
+   ╰──➤ max_depth | 4
+╰──➤ self_consistency
+   ╰──➤ enabled | false
+   ╰──➤ attempts | 3
+
+Build | @context
+╰──➤ max_tokens | 131072
+╰──➤ sliding_window
+   ╰──➤ enabled | true
+   ╰──➤ size | 65536
+   ╰──➤ overlap | 4096
+╰──➤ rag
+   ╰──➤ enabled | true
+   ╰──➤ chunk_size | 512
+   ╰──➤ chunk_overlap | 50
+   ╰──➤ top_k | 10
+
+Build | @ncomsystems.co
+╰──➤ plex-lib | "https://github.com/pfn000/PleX/blob/main/%40ncomsystems.co/plex-lib.!!"
+╰──➤ NudeSDK | "https://github.com/pfn000/PleX/tree/main/%40ncomsystems.co/Nude/SDK"
+╰──➤ assets | "https://github.com/pfn000/PleX/tree/main/%40ncomsystems.co"
+
+Build | @signatures
+╰──➤ identity.TAG | "NORA_IDENTITY_SIGNED_2026"
+╰──➤ state_lock.TAG | "NORA_STATE_LOCKED"
+╰──➤ skill_verified.TAG | "SKILL_VERIFIED_NCOM"
