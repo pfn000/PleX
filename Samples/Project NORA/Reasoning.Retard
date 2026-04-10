@@ -107,12 +107,12 @@ Math | LogicalOperations
 ╰──➤ Logic~!!
    ╰──➤ evaluate
       ╰──➤ Math~!!
-         ╰──➤ AND | A ∧ B | true if A and B are both true
-         ╰──➤ OR | A ∨ B | true if A or B is true
-         ╰──➤ NOT | ¬A | true if A is false
-         ╰──➤ XOR | A ⊕ B | true if exactly one of A, B is true
-         ╰──➤ IMPLIES | A → B | true if A is false or B is true
-         ╰──➤ IFF | A ↔ B | true if A and B have same truth value
+         ╰──➤ | A ∧ B | true if A and B are both true
+         ╰──➤ | A ∨ B | true if A or B is true
+         ╰──➤ | ¬A | true if A is false
+         ╰──➤ | A ⊕ B | true if exactly one of A, B is true
+         ╰──➤ | A → B | true if A is false or B is true
+         ╰──➤ | A ↔ B | true if A and B have same truth value
 ╰──➤ Logic~!!
    ╰──➤ modus_ponens
       ╰──➤ Argu~!!
