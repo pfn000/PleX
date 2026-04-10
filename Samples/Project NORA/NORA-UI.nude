@@ -1,13 +1,21 @@
-UI | .plx --Nude
+.plx | .Nude
+╰──➤ UIKit
+   ╰──➤ @UIKIT |~| ncom.co/~/PleX/UIKit.!!
+╰──➤ Nude
+   ╰──➤ @Nude |~| ncom.co/~/SDK/Nude.!!
+/!!______________________________________________________________
+/!! The UI to make this whole thing come together. [ @Saidie ]   |
+/!!______________________________________________________________|
 
-Panel~!! ChatWindow
-╰──➤ @attributes
-   ╰──➤ theme | "dark"
-   ╰──➤ layout | "vertical"
-╰──➤ Argu~!!
-   ╰──➤ messages | []
-   ╰──➤ input | [""]
-   ╰──➤ is_streaming | false
+UI | ChatWindow
+ ╰──➤  Panel~!! ChatWindow
+      ╰──➤ @attributes
+         ╰──➤ theme | "dark"
+         ╰──➤ layout | "vertical"
+      ╰──➤ Argu~!!
+         ╰──➤ messages | []
+         ╰──➤ input | [""]
+         ╰──➤ is_streaming | false
 
 Panel~!! MessageArea
 ╰──➤ @attributes
