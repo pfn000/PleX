@@ -4,24 +4,21 @@
 
 The PleX code, including all source files, algorithms, and proprietary language elements, is owned exclusively by NCOM Systems. “Plex” and any related trademarks are proprietary to NCOM Systems.
 
-> [!CAUTION] 
-> **`.plxcode`** files ARE NOT [Perl](https://www.perl.org) Files .plxcode will be seen as `NCOM Systems` Programming Language. 
-> Perl will **Not** be allowed to press legal suit from `NCOM Systems` class distinction that separates from ".plx perl files"
 ## Permitted Use
 You are granted a limited, non-exclusive, non-transferable right to view this repository for personal, non-commercial use only.
 
 ✅ You MAY:
-- Download any .plxCode file
-- Use PleX files in VS Code or Visual Studio
-- Write your own .plxCode files
+• Download any .plx file
+• Use PleX files in VS Code or Visual Studio
+• Write your own .plx files
 
 ## Strict Restrictions
 You MAY NOT:
--  Download, copy, extract, or redistribute any image files, screenshots, graphics, or assets
--  Claim any portion of the code, images, or assets as your own
-- Pass off any part of PleX as your original work
-- Use any part of this repository in other projects, forks, or derivatives
-- Modify, reverse-engineer, or distribute the proprietary PleX code
+• Download, copy, extract, or redistribute any image files, screenshots, graphics, or assets
+• Claim any portion of the code, images, or assets as your own
+• Pass off any part of PleX as your original work
+• Use any part of this repository in other projects, forks, or derivatives
+• Modify, reverse-engineer, or distribute the proprietary PleX code
 
 Any unauthorized use will be considered infringement and may result in legal action.
 
@@ -36,21 +33,20 @@ This license is not open source. All rights are expressly reserved.
 
 > [!TIP]
 > **What you CAN do**
->
-> 👍 Download any `.plxCode` file  
+> 👍 Download any `.plx` file  
 > 👍 Use in VS Code or Visual Studio  
-> 👍 Write your own `.plxCode` files
+> 👍 Write your own `.plx` files
 
 > [!CAUTION]
 > **What you CANNOT do**
-> - Download or redistribute any images, screenshots, or assets  
-> - Claim any code or assets as your own  
-> - Use in other projects or forks  
-> - Reverse-engineer or distribute the proprietary PleX code
+> • Download or redistribute any images, screenshots, or assets  
+> • Claim any code or assets as your own  
+> • Use in other projects or forks  
+> • Reverse-engineer or distribute the proprietary PleX code
 
 > [!NOTE]
 > Questions? Feel free to email me (respectfully):  
-> [SaidieQN@ncomsystems.co](Official_Emmi@outlook.com)
+> [Official_Emmi@outlook.com](mailto:Official_Emmi@outlook.com)
 
 > [!WARNING]
 > **Abuse or misuse** (spam, harassment, identity theft, stealing my contact info, socials, or NCOM name) will be treated as infringement and pursued legally.
