@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>"PLEX" — DOCUMENTATION</title>
+<meta name="description" content="PleX — a direct-intent programming language built by NCOM Systems. Documentation." />
+<style>
+  :root{
+    --black:#0a0a0a;
+    --black-2:#121212;
+    --black-3:#181818;
+    --line:#3a3a3a;
+    --line-dim:#262626;
+    --white:#f3f1ec;
+    --white-dim:#9a978f;
+    --caution:#ff5b1f;
+    --caution-dim:#8a3315;
+    --mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      repeating-linear-gradient(135deg, rgba(255,91,31,0.025) 0px, rgba(255,91,31,0.025) 2px, transparent 2px, transparent 14px),
+      var(--black);
+    color:var(--white);
+    font-family:var(--sans);
+    min-height:100vh;
+  }
+
+  ::selection{ background:var(--caution); color:var(--black); }
+
+  /* ---------- top hazard strip ---------- */
+  .hazard{
+    height:10px;
+    width:100%;
+    background:repeating-linear-gradient(135deg, var(--caution) 0px, var(--caution) 16px, var(--black) 16px, var(--black) 32px);
+  }
+
+  /* ---------- header ---------- */
+  header{
+    border-bottom:1px solid var(--line);
+    padding:28px clamp(20px, 4vw, 56px) 24px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:18px;
+  }
+  .brandblock{ display:flex; flex-direction:column; gap:6px; }
+  .brand-quote{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.12em;
+    color:var(--caution);
+    text-transform:uppercase;
+  }
+  .brand-title{
+    font-family:var(--sans);
+    font-weight:800;
+    font-size:clamp(28px,5vw,46px);
+    letter-spacing:-0.01em;
+    line-height:0.95;
+    text-transform:uppercase;
+    margin:0;
+  }
+  .brand-title em{
+    font-style:normal;
+    color:var(--white-dim);
+  }
+  .brand-sub{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--white-dim);
+    letter-spacing:0.02em;
+  }
+  .header-tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .tag{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    border:1px solid var(--line);
+    padding:6px 10px;
+    color:var(--white-dim);
+  }
+  .tag.live{
+    border-color:var(--caution);
+    color:var(--caution);
+  }
+  .tag.live::before{
+    content:"";
+    display:inline-block;
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--caution);
+    margin-right:7px;
+    box-shadow:0 0 6px var(--caution);
+  }
+
+  /* ---------- layout ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns: 270px 1fr;
+    max-width:1320px;
+    margin:0 auto;
+  }
+  @media (max-width: 860px){
+    .shell{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- sidebar ---------- */
+  nav.sidebar{
+    border-right:1px solid var(--line);
+    padding:30px 20px 60px;
+    position:sticky;
+    top:0;
+    align-self:start;
+    height:100vh;
+    overflow-y:auto;
+  }
+  @media (max-width: 860px){
+    nav.sidebar{ position:static; height:auto; border-right:none; border-bottom:1px solid var(--line); }
+  }
+  .sidebar-label{
+    font-family:var(--mono);
+    font-size:10px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--caution);
+    margin:0 0 14px;
+  }
+  .sidebar-label::before{ content:'"'; }
+  .sidebar-label::after{ content:'"'; }
+
+  .navlist{ list-style:none; margin:0 0 30px; padding:0; }
+  .navlist li{ margin:0; }
+  .navlink{
+    display:block;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--white-dim);
+    text-decoration:none;
+    padding:9px 0 9px 16px;
+    border-left:2px solid var(--line-dim);
+    transition:color .12s, border-color .12s, padding-left .12s;
+    cursor:pointer;
+  }
+  .navlink:hover{
+    color:var(--white);
+    border-left-color:var(--white-dim);
+    padding-left:20px;
+  }
+  .navlink.active{
+    color:var(--white);
+    border-left-color:var(--caution);
+    font-weight:600;
+  }
+
+  .sidebar-foot{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--white-dim);
+    line-height:1.7;
+    border-top:1px solid var(--line-dim);
+    padding-top:16px;
+    margin-top:10px;
+  }
+  .sidebar-foot a{ color:var(--caution); }
+
+  /* ---------- main content ---------- */
+  main{
+    padding:clamp(28px,4vw,60px) clamp(20px,5vw,72px) 120px;
+    min-width:0;
+  }
+
+  #search{
+    width:100%;
+    background:var(--black-2);
+    border:1px solid var(--line);
+    color:var(--white);
+    font-family:var(--mono);
+    font-size:13px;
+    padding:11px 14px;
+    margin-bottom:26px;
+    letter-spacing:0.02em;
+  }
+  #search::placeholder{ color:var(--white-dim); }
+  #search:focus{ outline:none; border-color:var(--caution); }
+
+  .content{
+    max-width:760px;
+  }
+  .content h1{
+    font-size:clamp(26px,4vw,38px);
+    text-transform:uppercase;
+    letter-spacing:-0.01em;
+    font-weight:800;
+    border-bottom:3px solid var(--caution);
+    padding-bottom:14px;
+    margin:0 0 26px;
+  }
+  .content h2{
+    font-size:20px;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    font-weight:700;
+    margin:42px 0 14px;
+    padding-left:14px;
+    border-left:3px solid var(--caution);
+  }
+  .content h3{
+    font-family:var(--mono);
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--caution-dim);
+    margin:28px 0 10px;
+  }
+  .content p{
+    line-height:1.7;
+    color:#d8d6cf;
+    margin:0 0 16px;
+    font-size:15.5px;
+  }
+  .content a{ color:var(--caution); text-decoration:underline; text-decoration-color:var(--caution-dim); text-underline-offset:3px; }
+  .content a:hover{ text-decoration-color:var(--caution); }
+  .content ul, .content ol{
+    color:#d8d6cf;
+    line-height:1.8;
+    padding-left:22px;
+    margin:0 0 18px;
+    font-size:15.5px;
+  }
+  .content li{ margin-bottom:4px; }
+  .content code{
+    font-family:var(--mono);
+    background:var(--black-3);
+    border:1px solid var(--line-dim);
+    padding:1px 6px;
+    font-size:0.88em;
+    color:var(--white);
+  }
+  .content pre{
+    background:var(--black-2);
+    border:1px solid var(--line);
+    border-left:3px solid var(--caution);
+    padding:18px 20px;
+    overflow-x:auto;
+    margin:0 0 22px;
+  }
+  .content pre code{
+    background:none;
+    border:none;
+    padding:0;
+    font-size:13px;
+    line-height:1.65;
+    color:var(--white);
+  }
+  .content blockquote{
+    margin:0 0 20px;
+    padding:4px 0 4px 18px;
+    border-left:2px solid var(--white-dim);
+    color:var(--white-dim);
+    font-style:normal;
+  }
+  .content hr{
+    border:none;
+    border-top:1px solid var(--line-dim);
+    margin:36px 0;
+  }
+  .content table{
+    width:100%;
+    border-collapse:collapse;
+    margin:0 0 24px;
+    font-size:14px;
+  }
+  .content th, .content td{
+    border:1px solid var(--line);
+    padding:9px 12px;
+    text-align:left;
+  }
+  .content th{
+    font-family:var(--mono);
+    text-transform:uppercase;
+    font-size:11px;
+    letter-spacing:0.05em;
+    color:var(--caution);
+    background:var(--black-2);
+  }
+  .content td{ color:#d8d6cf; }
+  .content strong{ color:var(--white); }
+
+  .label-strip{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--black);
+    background:var(--caution);
+    display:inline-block;
+    padding:4px 10px;
+    margin-bottom:18px;
+  }
+
+  .state{
+    font-family:var(--mono);
+    color:var(--white-dim);
+    font-size:13px;
+    padding:40px 0;
+  }
+  .state.err{ color:var(--caution); }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:30px clamp(20px,5vw,72px);
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--white-dim);
+    letter-spacing:0.04em;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  footer a{ color:var(--caution); text-decoration:none; }
+
+  /* scrollbar, webkit only, cosmetic */
+  ::-webkit-scrollbar{ width:10px; height:10px; }
+  ::-webkit-scrollbar-track{ background:var(--black); }
+  ::-webkit-scrollbar-thumb{ background:var(--line); }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--white-dim); }
+</style>
+</head>
+<body>
+
+<div class="hazard"></div>
+
+<header>
+  <div class="brandblock">
+    <div class="brand-quote">"not a derivative work"</div>
+    <h1 class="brand-title">PLEX <em>// DOCS</em></h1>
+    <div class="brand-sub">NCOM Systems &mdash; direct intent commands, signed at the hardware lane</div>
+  </div>
+  <div class="header-tags">
+    <span class="tag live">live from main</span>
+    <span class="tag">v0.1.0</span>
+    <span class="tag">proprietary</span>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="sidebar">
+    <p class="sidebar-label">sections</p>
+    <ul class="navlist" id="navlist">
+      <li class="state">loading index&hellip;</li>
+    </ul>
+
+    <p class="sidebar-label">repo</p>
+    <ul class="navlist">
+      <li><a class="navlink" href="https://github.com/pfn000/PleX" target="_blank" rel="noopener">source &#x2197;</a></li>
+      <li><a class="navlink" href="https://github.com/pfn000/PleX/issues" target="_blank" rel="noopener">issues &#x2197;</a></li>
+      <li><a class="navlink" href="https://liberapay.com/SaidieQN" target="_blank" rel="noopener">support this &#x2197;</a></li>
+    </ul>
+
+    <div class="sidebar-foot">
+      Maintained solo by <a href="https://github.com/pfn000" target="_blank" rel="noopener">@pfn000</a>.<br/>
+      This repo went through a corruption incident in 2026. If a page 404s, it's mid-rebuild &mdash; see "Origin."
+    </div>
+  </nav>
+
+  <main>
+    <input type="text" id="search" placeholder='search sections&hellip;  "' aria-label="Search documentation sections" />
+    <div class="content" id="content">
+      <div class="state">fetching documentation from github&hellip;</div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <span>&copy; 2026 NCOM SYSTEMS &mdash; ALL RIGHTS RESERVED</span>
+  <span>"PLEX" IS NOT THE 1970S ERICSSON PLEX LANGUAGE</span>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  const REPO = "pfn000/PleX";
+  const BRANCH = "main";
+  const DOCS_PATH = ".docs";
+  const API_BASE = `https://api.github.com/repos/${REPO}/contents/${DOCS_PATH}?ref=${BRANCH}`;
+  const RAW_BASE = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${DOCS_PATH}`;
+
+  // Files we never want surfaced as their own sidebar entries.
+  const EXCLUDE = new Set(["docs.plex.html", "index.html"]);
+  // Order priority — lower sorts first. Anything unlisted falls back to alphabetical.
+  const PRIORITY = { "index.md": 0, "getting-started.md": 1, "overview.md": 2, "origin.md": 3 };
+  // Fallback list used only if the GitHub contents API is unreachable or rate-limited
+  // (anonymous requests share a 60/hr limit per IP — a popular page can hit that).
+  // Keep this in sync with what actually lives in /.docs.
+  const FALLBACK_FILES = ["index.md", "getting-started.md", "Overview.md", "Origin.md", "README.md"];
+
+  const navlistEl = document.getElementById("navlist");
+  const contentEl = document.getElementById("content");
+  const searchEl = document.getElementById("search");
+
+  let sections = []; // { name, label, path }
+
+  function labelFromFilename(filename){
+    if(filename.toLowerCase() === "index.md") return "Home";
+    return filename
+      .replace(/\.md$/i, "")
+      .replace(/[-_]+/g, " ")
+      .replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, c => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+    }[c]));
+  }
+
+  // Minimal, dependency-free markdown renderer.
+  // Covers: headings, bold/italic, inline code, fenced code blocks,
+  // links, lists, blockquotes, hr, tables, paragraphs.
+  function renderMarkdown(md){
+    const lines = md.replace(/\r\n/g, "\n").split("\n");
+    let html = "";
+    let i = 0;
+    let inCode = false, codeBuf = [], codeLang = "";
+    let listBuf = [], listType = null;
+
+    function flushList(){
+      if(listBuf.length){
+        const tag = listType === "ol" ? "ol" : "ul";
+        html += `<${tag}>${listBuf.join("")}</${tag}>`;
+        listBuf = []; listType = null;
+      }
+    }
+
+    function inline(text){
+      text = escapeHtml(text);
+      text = text.replace(/`([^`]+)`/g, (m,c) => `<code>${c}</code>`);
+      text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+      text = text.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
+      text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, t, href) => {
+        let resolvedHref = href;
+        if(!/^https?:\/\//.test(href) && href.endsWith(".md")){
+          resolvedHref = "#" + href.replace(/^\.?\//, "").replace(/\.md$/i, "");
+        }
+        const external = /^https?:\/\//.test(href);
+        return `<a href="${resolvedHref}"${external ? ' target="_blank" rel="noopener"' : ' class="internal-link"'}>${t}</a>`;
+      });
+      return text;
+    }
+
+    while(i < lines.length){
+      const line = lines[i];
+
+      // fenced code
+      const fence = line.match(/^```(\w*)\s*$/);
+      if(fence){
+        if(!inCode){ inCode = true; codeLang = fence[1] || ""; codeBuf = []; }
+        else {
+          html += `<pre><code class="lang-${codeLang}">${escapeHtml(codeBuf.join("\n"))}</code></pre>`;
+          inCode = false;
+        }
+        i++; continue;
+      }
+      if(inCode){ codeBuf.push(line); i++; continue; }
+
+      // table (simple GFM)
+      if(/^\|.*\|\s*$/.test(line) && lines[i+1] && /^\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$/.test(lines[i+1])){
+        const headCells = line.split("|").slice(1,-1).map(c=>c.trim());
+        let tableHtml = "<table><thead><tr>" + headCells.map(c=>`<th>${inline(c)}</th>`).join("") + "</tr></thead><tbody>";
+        i += 2;
+        while(i < lines.length && /^\|.*\|\s*$/.test(lines[i])){
+          const cells = lines[i].split("|").slice(1,-1).map(c=>c.trim());
+          tableHtml += "<tr>" + cells.map(c=>`<td>${inline(c)}</td>`).join("") + "</tr>";
+          i++;
+        }
+        tableHtml += "</tbody></table>";
+        html += tableHtml;
+        continue;
+      }
+
+      // heading
+      const h = line.match(/^(#{1,6})\s+(.*)$/);
+      if(h){
+        flushList();
+        const level = h[1].length;
+        const id = h[2].toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
+        html += `<h${level} id="${id}">${inline(h[2])}</h${level}>`;
+        i++; continue;
+      }
+
+      // hr
+      if(/^---+\s*$/.test(line)){
+        flushList();
+        html += "<hr/>";
+        i++; continue;
+      }
+
+      // blockquote
+      if(/^>\s?/.test(line)){
+        flushList();
+        let buf = [];
+        while(i < lines.length && /^>\s?/.test(lines[i])){
+          buf.push(lines[i].replace(/^>\s?/, ""));
+          i++;
+        }
+        html += `<blockquote><p>${inline(buf.join(" "))}</p></blockquote>`;
+        continue;
+      }
+
+      // unordered list
+      const ul = line.match(/^[-*]\s+(.*)$/);
+      if(ul){
+        if(listType !== "ul"){ flushList(); listType = "ul"; }
+        listBuf.push(`<li>${inline(ul[1])}</li>`);
+        i++; continue;
+      }
+
+      // ordered list
+      const ol = line.match(/^\d+\.\s+(.*)$/);
+      if(ol){
+        if(listType !== "ol"){ flushList(); listType = "ol"; }
+        listBuf.push(`<li>${inline(ol[1])}</li>`);
+        i++; continue;
+      }
+
+      // blank line
+      if(/^\s*$/.test(line)){
+        flushList();
+        i++; continue;
+      }
+
+      // paragraph (collect until blank/structural line)
+      flushList();
+      let buf = [line];
+      i++;
+      while(i < lines.length && !/^\s*$/.test(lines[i]) && !/^#{1,6}\s/.test(lines[i]) && !/^[-*]\s/.test(lines[i]) && !/^\d+\.\s/.test(lines[i]) && !/^```/.test(lines[i]) && !/^>\s?/.test(lines[i])){
+        buf.push(lines[i]); i++;
+      }
+      html += `<p>${inline(buf.join(" "))}</p>`;
+    }
+    flushList();
+    return html;
+  }
+
+  function setActive(slug){
+    document.querySelectorAll(".navlink[data-slug]").forEach(a => {
+      a.classList.toggle("active", a.dataset.slug === slug);
+    });
+  }
+
+  async function loadSection(path, slug, pushHash){
+    contentEl.innerHTML = `<div class="state">loading "${escapeHtml(slug)}"&hellip;</div>`;
+    try{
+      const res = await fetch(`${RAW_BASE}/${path}`, { cache: "no-store" });
+      if(!res.ok) throw new Error(`HTTP ${res.status}`);
+      const md = await res.text();
+      contentEl.innerHTML = `<div class="label-strip">${escapeHtml(slug)}</div>` + renderMarkdown(md);
+      setActive(slug);
+      if(pushHash !== false) location.hash = slug;
+      window.scrollTo({top:0, behavior:"instant"});
+
+      // intercept internal links
+      contentEl.querySelectorAll("a.internal-link").forEach(a => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = a.getAttribute("href").replace(/^#/, "");
+          navigateBySlug(target);
+        });
+      });
+    }catch(err){
+      contentEl.innerHTML = `<div class="state err">could not load "${escapeHtml(slug)}" &mdash; ${escapeHtml(err.message)}.<br/><br/>this file may have moved or been removed during repo recovery. check <a href="#origin">"origin"</a> for current status, or view it directly on <a href="https://github.com/${REPO}/blob/${BRANCH}/${DOCS_PATH}/${encodeURIComponent(path)}" target="_blank" rel="noopener">github</a>.</div>`;
+    }
+  }
+
+  function navigateBySlug(slug){
+    const match = sections.find(s => s.slug === slug);
+    if(match){ loadSection(match.path, match.slug); }
+    else {
+      contentEl.innerHTML = `<div class="state err">no section named "${escapeHtml(slug)}" was found in this index.</div>`;
+    }
+  }
+
+  function buildNav(){
+    navlistEl.innerHTML = "";
+    sections.forEach(s => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.className = "navlink";
+      a.dataset.slug = s.slug;
+      a.textContent = s.label;
+      a.href = "#" + s.slug;
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        loadSection(s.path, s.slug);
+      });
+      li.appendChild(a);
+      navlistEl.appendChild(li);
+    });
+  }
+
+  searchEl.addEventListener("input", () => {
+    const q = searchEl.value.trim().toLowerCase();
+    document.querySelectorAll("#navlist li").forEach((li, idx) => {
+      const s = sections[idx];
+      if(!s) return;
+      li.style.display = s.label.toLowerCase().includes(q) ? "" : "none";
+    });
+  });
+
+  async function init(){
+    try{
+      const res = await fetch(API_BASE, { headers: { "Accept": "application/vnd.github+json" } });
+      if(!res.ok) throw new Error(`GitHub API responded ${res.status}`);
+      const files = await res.json();
+
+      sections = buildSections(
+        files
+          .filter(f => f.type === "file" && /\.md$/i.test(f.name) && !EXCLUDE.has(f.name.toLowerCase()))
+          .map(f => f.name)
+      );
+    }catch(err){
+      // Anonymous GitHub API rate limit (60/hr/IP) or transient failure — degrade
+      // gracefully to a known file list instead of breaking the whole site.
+      console.warn("Docs index API failed, using fallback file list:", err.message);
+      sections = buildSections(FALLBACK_FILES);
+    }
+
+    if(sections.length === 0){
+      navlistEl.innerHTML = `<li class="state err">no markdown files found in /${DOCS_PATH}</li>`;
+      contentEl.innerHTML = `<div class="state err">documentation index came back empty.</div>`;
+      return;
+    }
+
+    buildNav();
+
+    const requested = location.hash.replace(/^#/, "");
+    const initial = sections.find(s => s.slug === requested) || sections[0];
+    loadSection(initial.path, initial.slug, false);
+  }
+
+  function buildSections(filenames){
+    return filenames
+      .map(name => ({
+        name,
+        label: labelFromFilename(name),
+        path: name,
+        slug: name.replace(/\.md$/i, "").toLowerCase()
+      }))
+      .sort((a,b) => {
+        const pa = PRIORITY[a.name.toLowerCase()] ?? 99;
+        const pb = PRIORITY[b.name.toLowerCase()] ?? 99;
+        if(pa !== pb) return pa - pb;
+        return a.label.localeCompare(b.label);
+      });
+  }
+
+  window.addEventListener("hashchange", () => {
+    const slug = location.hash.replace(/^#/, "");
+    if(slug) navigateBySlug(slug);
+  });
+
+  init();
+})();
+</script>
+
+</body>
+</html>
