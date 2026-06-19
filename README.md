@@ -6,6 +6,11 @@
 ## 2026 UPDATE
 `This Repo is in the process of recovery and development. some of the Table of Contents might be missing or broken. I had dealt with Repo Corruption and AI screwed me over.`
 ![Very Angy Dev](https://github.com/pfn000/PleX/blob/main/10794BDE-FD1C-4300-BF01-562924EB1129.png)
+`Please be patient with me during this period of recovery, dispite certain buttons and pages not working this project has been developed and maintained by **JUST** me.`
+
+> If you want to help sponsor this project and what to help feel free reatch out
+<script> src="https://liberapay.com/SaidieQN/widgets/button.js"></script>
+<noscript><a href="https://liberapay.com/SaidieQN/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
 
 ## __The Core Philosophy__
 > [!TIP]
@@ -28,8 +33,7 @@ You are granted a limited, non-exclusive, non-transferable right to view this re
 
 
 
-<script src="https://liberapay.com/SaidieQN/widgets/button.js"></script>
-<noscript><a href="https://liberapay.com/SaidieQN/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
+
 
 ### 📋 Table of Contents  
 - [Core Philosophy](#core-philosophy)
