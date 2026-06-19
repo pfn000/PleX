@@ -21,7 +21,13 @@ The name comes from **“Complex”** — simplified into a language that feels 
 > Perl will **Not** be allowed to press legal suit from `NCOM Systems` class distinction that separates from ".plx perl files"
 ## Permitted Use
 You are granted a limited, non-exclusive, non-transferable right to view this repository for personal, non-commercial use only.
+-- 
+## 2026 UPDATE
+`This Repo is in the process of recovery and development. some of the Table of Contents might be missing or broken. I had dealt with Repo Corruption and AI screwed me over.`
 
+
+<script src="https://liberapay.com/SaidieQN/widgets/button.js"></script>
+<noscript><a href="https://liberapay.com/SaidieQN/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
 
 ### 📋 Table of Contents  
 - [Core Philosophy](#core-philosophy)
