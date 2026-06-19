@@ -9,7 +9,7 @@
 `Please be patient with me during this period of recovery, dispite certain buttons and pages not working this project has been developed and maintained by **JUST** me.`
 
 > If you want to help sponsor this project and what to help feel free reatch out
-<script> src="https://liberapay.com/SaidieQN/widgets/button.js"></script>
+
 <noscript><a href="https://liberapay.com/SaidieQN/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
 
 ## __The Core Philosophy__
