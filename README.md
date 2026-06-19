@@ -5,7 +5,7 @@
 
 ## 2026 UPDATE
 `This Repo is in the process of recovery and development. some of the Table of Contents might be missing or broken. I had dealt with Repo Corruption and AI screwed me over.`
-
+![Very Angy Dev](https://github.com/pfn000/PleX/blob/main/10794BDE-FD1C-4300-BF01-562924EB1129.png)
 
 ## __The Core Philosophy__
 > [!TIP]
