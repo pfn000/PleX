@@ -1,7 +1,29 @@
-# Security
+[![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
+![NCOM Systems 2026 Banner](https://github.com/pfn000/PleX/raw/main/Assets/Images/NCOM%20Systems%202026%20Banner.PNG)
 
-Security updates are provided for the latest default branch.
+# Legal & Usage
 
-## Reporting a vulnerability
+> [!TIP]
+> **What you CAN do**
 
-Please report security issues privately to the maintainers and do not open public issues for vulnerabilities.
+> 👍 Download any `.plx` file  
+> 👍 Use in VS Code or Visual Studio  
+> 👍 Write your own `.plx` files
+
+> [!CAUTION]
+> **What you CANNOT do**
+> • Download or redistribute any images, screenshots, or assets  
+> • Claim any code or assets as your own  
+> • Use in other projects or forks  
+> • Reverse-engineer or distribute the proprietary PleX code
+
+> [!NOTE]
+> Questions? Feel free to email me (respectfully):  
+> [Official_Emmi@outlook.com](mailto:Official_Emmi@outlook.com)
+
+> [!WARNING]
+> **Abuse or misuse** (spam, harassment, identity theft, stealing my contact info, socials, or NCOM name) will be treated as infringement and pursued legally.
+
+**Identity theft is illegal**  
+USA: [18 U.S. Code § 1028A](https://www.usa.gov/identity-theft)  
+UK: [Theft Act 1968](https://www.cps.gov.uk/prosecution-guidance/theft-act-offences#T04)
