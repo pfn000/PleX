@@ -5,6 +5,7 @@
 
 > [!TIP]
 > **What you CAN do**
+
 > 👍 Download any `.plx` file  
 > 👍 Use in VS Code or Visual Studio  
 > 👍 Write your own `.plx` files
