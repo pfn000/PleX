@@ -1,0 +1,13 @@
+.plx | header
+╰──➤ v1
+
+Argu | Logic
+╰──➤ header .plx 
+    ╰──➤ devicon |~|!!| ncom.co/~/SDK/PleX/Assets/images/plexcode.svg | plexcode.svg  
+
+Argu | Logic
+╰──➤ doctype typed | ".plx" 
+    ╰──➤ set | Assets
+        ╰──➤ File Extention | .plx & .plexcode    
+    ╰──➤ set | Assets
+        ╰──➤ devicon | plexcode.svg 
