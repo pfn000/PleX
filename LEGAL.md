@@ -29,11 +29,11 @@ USA: [18 U.S. Code § 1028A](https://www.usa.gov/identity-theft)
 UK: [Theft Act 1968](https://www.cps.gov.uk/prosecution-guidance/theft-act-offences#T04)
 
 
-/!!    Copyright (c) 2026 Saidie Quinn Newara
-/!!
-/!!    All rights reserved.
-/!!
-/!!    This software and its source code are proprietary and confidential.
-/!!    Unauthorized copying, modification, distribution, reverse engineering,
-/!!    or commercial use of this software, in whole or in part, is strictly
-/!!    prohibited without prior written permission from the copyright holder.
+`Copyright (c) 2026 Saidie Quinn Newara`
+
+`All rights reserved.`
+
+`This software and its source code are proprietary and confidential.
+Unauthorized copying, modification, distribution, reverse engineering,
+or commercial use of this software, in whole or in part, is strictly
+prohibited without prior written permission from the copyright holder.`
