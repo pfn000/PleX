@@ -1,0 +1,6 @@
+\\\ Build | .mf
+\\\ Build | .att
+\\\ Build | .tag
+\\\ Hail | Versions ["".mf],["".att],["".tag]
+Store | VERSION 
+Store | Bundle[states(ALL | Local ".mf && .att && .TAG")]
